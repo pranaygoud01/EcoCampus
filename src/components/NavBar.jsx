@@ -45,12 +45,15 @@ const NavBar = () => {
           />
         </div>
         <div className="flex gap-2">
-          <Link to="/login" className="font-semibold text-blue-500 bg-neutral-100 rounded-lg px-4 py-2 text-xs">
+          <Link
+            to="/login"
+            className="font-semibold text-blue-500 bg-neutral-100 rounded-lg px-4 py-2 text-xs"
+          >
             Login
           </Link>
-          <button className="font-semibold text-white bg-blue-500 rounded-lg px-4 py-2 text-xs">
+          <Link  to="/register" className="font-semibold text-white bg-blue-500 rounded-lg px-4 py-2 text-xs">
             Register
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -76,12 +79,18 @@ const NavBar = () => {
           ))}
 
           <div className="flex flex-col gap-2">
-            <Link  to="/login" className="font-semibold text-center text-blue-500 bg-blue-100 rounded-lg px-4 py-2 text-sm">
+            <Link
+              to="/login"
+              className="font-semibold text-center text-blue-500 bg-blue-100 rounded-lg px-4 py-2 text-sm"
+            >
               Login
             </Link>
-            <button className="font-semibold text-white bg-blue-500 rounded-lg px-4 py-2 text-sm">
+            <Link
+              to="/register"
+              className="font-semibold text-white text-center bg-blue-500 rounded-lg px-4 py-2 text-sm"
+            >
               Register
-            </button>
+            </Link>
           </div>
         </div>
       )}

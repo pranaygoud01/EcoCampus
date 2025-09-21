@@ -30,7 +30,7 @@ const Sell = () => {
                 name="title"
                 id="title"
                 placeholder="e.g., Gently Used Lab Coat"
-                className="mt-1 block w-full bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
@@ -46,7 +46,7 @@ const Sell = () => {
                 id="description"
                 rows="4"
                 placeholder="Describe your item in detail, including condition, size, etc."
-                className="mt-1 block w-full bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
               ></textarea>
             </div>
 
@@ -61,7 +61,7 @@ const Sell = () => {
                 <select
                   id="category"
                   name="category"
-                  className="mt-1 block w-full bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+                  className="mt-1 block w-full p-3 bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
                 >
                   <option value="" disabled selected>
                     Select a category
@@ -90,7 +90,7 @@ const Sell = () => {
                     name="price"
                     id="price"
                     placeholder="0.00"
-                    className="block w-full pl-7 pr-12 bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                    className="block w-full bg-neutral-50 pl-7 p-3 pr-12 bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 pr-3 flex items-center">
                     <span className="text-gray-500 sm:text-sm">USD</span>
@@ -145,7 +145,7 @@ const Sell = () => {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                className="w-full md:w-auto inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-lg text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
+                className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-semibold rounded-lg text-white bg-blue-500 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
               >
                 Create Listing
               </button>
