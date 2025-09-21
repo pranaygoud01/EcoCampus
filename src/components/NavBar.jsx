@@ -8,7 +8,7 @@ const NavBar = () => {
   const menu = ["Browse", "Sell", "About"];
 
   return (
-    <div className="w-full px-6 md:px-20 py-3 sticky top-0 bg-white z-50 flex border-b border-b-neutral-200 justify-between items-center">
+    <div className="w-full px-6 md:px-20 py-4 sticky backdrop-blur-sm  top-0  z-50 flex border-b border-b-neutral-200 justify-between items-center">
       {/* Left Logo + Menu */}
       <div className="flex items-center gap-5">
         <h1 className="font-bold poppins text-neutral-800 max-lg:text-lg text-xl flex items-center gap-3">
@@ -66,7 +66,7 @@ const NavBar = () => {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="absolute top-13 left-0 w-full bg-white border-t border-neutral-200 flex flex-col gap-4 p-5 md:hidden shadow-lg">
+        <div className="absolute top-15 left-0 w-full  bg-white  border-t border-neutral-200 flex flex-col gap-4 p-5 md:hidden shadow-lg">
           {menu.map((item) => (
             <Link
               key={item}
