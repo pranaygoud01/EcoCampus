@@ -19,8 +19,8 @@ const Footer = () => {
               Privacy Policy
             </a>
           </div>
-          <p className="text-xs text-black/60 dark:text-white/60">
-            © 2025 SwapnSave. All rights reserved.
+          <p className="text-xs text-black font-semibold">
+            Developed with ❤️
           </p>
         </div>
       </div>

@@ -7,21 +7,21 @@ const Process = () => {
   const steps = [
     {
       id: 1,
-      icon: <FiSearch size={28} />,
+      icon: "🔖",
       title: "Find or List",
       description:
         "Search for what you need or easily list items you want to sell. It only takes a minute!",
     },
     {
       id: 2,
-      icon: <IoChatboxEllipsesOutline size={28} />,
+      icon: "👋🏻",
       title: "Connect",
       description:
         "Chat with buyers or sellers directly on the platform to arrange details and ask questions.",
     },
     {
       id: 3,
-      icon: <LiaExchangeAltSolid size={28} />,
+      icon:"💰",
       title: "Meet & Exchange",
       description:
         "Meet up on campus to safely exchange your item and payment. Simple and secure.",
@@ -47,7 +47,7 @@ const Process = () => {
               key={item.id}
               className="flex flex-col items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
             >
-              <span className="flex items-center justify-center w-14 h-14 rounded-full text-black">
+              <span className="flex items-center justify-center text-5xl ">
                 {item.icon}
               </span>
               <h2 className="font-bold text-xl text-gray-800">{item.title}</h2>
