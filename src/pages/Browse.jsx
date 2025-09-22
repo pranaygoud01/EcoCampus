@@ -33,7 +33,7 @@ const Browse = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background font-display text-foreground">
+    <div className="h-[90vh] flex flex-col bg-background font-display text-foreground">
       <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
@@ -73,7 +73,7 @@ const Browse = () => {
                   }`}
                   onClick={() => handleSelectCampus(campus)}
                 >
-                  <span className="font-medium text-foreground">{campus}</span>
+                  <span className="font-medium text-sm">{campus}</span>
                 </button>
               ))}
             </div>
