@@ -20,7 +20,7 @@ const Footer = () => {
             </a>
           </div>
           <p className="text-xs text-black/60 dark:text-white/60">
-            © 2025 Campus Exchange. All rights reserved.
+            © 2025 SwapnSave. All rights reserved.
           </p>
         </div>
       </div>

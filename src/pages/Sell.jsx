@@ -145,7 +145,7 @@ const Sell = () => {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent  text-base font-semibold rounded-lg text-white bg-blue-500 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
+                className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent  text-base font-semibold rounded-lg text-white bg-black hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
               >
                 Create Listing
               </button>

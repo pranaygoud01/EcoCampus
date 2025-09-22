@@ -1,7 +1,7 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { RiExchangeBoxLine } from "react-icons/ri";
+import { LiaExchangeAltSolid } from "react-icons/lia";
 
 const Process = () => {
   const steps = [
@@ -21,7 +21,7 @@ const Process = () => {
     },
     {
       id: 3,
-      icon: <RiExchangeBoxLine size={28} />,
+      icon: <LiaExchangeAltSolid size={28} />,
       title: "Meet & Exchange",
       description:
         "Meet up on campus to safely exchange your item and payment. Simple and secure.",
@@ -31,9 +31,16 @@ const Process = () => {
   return (
     <section className="w-full flex items-center justify-center px-6 md:px-20 py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="flex flex-col gap-12 items-center max-w-5xl w-full">
-        <h1 className="font-bold text-2xl md:text-4xl text-gray-900 text-center">
-          How It Works
-        </h1>
+        <div>
+          <h1 className="font-bold text-2xl md:text-4xl text-gray-900 text-center">
+            How It Works
+          </h1>
+          <p className="text-neutral-500 max-lg:text-xs text-sm text-center max-w-2xl">
+            A simple 3-step process to buy, sell, and connect with others on
+            campus.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
           {steps.map((item) => (
             <div
