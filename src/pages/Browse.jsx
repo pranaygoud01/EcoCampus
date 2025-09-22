@@ -1,6 +1,7 @@
+import { useNavigate } from "@tanstack/react-router";
 import React, { useState } from "react";
-import { IoSearch } from "react-icons/io5";
-import { IoArrowForwardSharp } from "react-icons/io5";
+import { IoSearch, IoArrowForwardSharp } from "react-icons/io5";
+
 const campusList = [
   "Stanford",
   "UC Berkeley",
@@ -11,6 +12,7 @@ const campusList = [
 ];
 
 const Browse = () => {
+  const navigate = useNavigate(); // ✅ moved inside component
   const [selectedCampus, setSelectedCampus] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -34,10 +36,8 @@ const Browse = () => {
     <div className="min-h-screen flex flex-col bg-background font-display text-foreground">
       <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-         
-
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            Select Your Campus
+            Find Your Campus
           </h2>
           <p className="mt-4 max-w-xl text-sm text-neutral-500">
             Find deals on textbooks, gadgets, and more from students at your school.
@@ -46,22 +46,24 @@ const Browse = () => {
           {/* Search Input */}
           <div className="w-full max-w-md mt-8">
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-               <IoSearch/>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <IoSearch />
               </span>
               <input
                 type="search"
                 placeholder="Search for your campus..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full bg-background border border-neutral-500 rounded-full py-3 pl-10 pr-4 text-base shadow-sm focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background placeholder:text-muted-foreground"
+                className="w-full bg-background border border-neutral-300 rounded-xl py-3 pl-10 pr-4 text-base shadow-sm outline-0"
               />
             </div>
           </div>
 
           {/* Popular Campuses */}
           <div className="w-full max-w-lg mt-8">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Popular Campuses</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+              Popular Campuses
+            </h3>
             <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
               {campusList.map((campus, idx) => (
                 <button
@@ -80,13 +82,16 @@ const Browse = () => {
           {/* Continue Button */}
           <div className="mt-12">
             <button
+              onClick={() => navigate({ to: "/browse/products" })}
               className={`w-full sm:w-auto inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-sm text-base font-semibold rounded-full text-white bg-blue-500 ${
                 !selectedCampus ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={!selectedCampus}
             >
               Continue
-              <span className="material-symbols-outlined ml-2"><IoArrowForwardSharp/></span>
+              <span className="ml-2">
+                <IoArrowForwardSharp />
+              </span>
             </button>
           </div>
         </div>
@@ -100,7 +105,9 @@ const Browse = () => {
             color: hsl(var(--primary-foreground));
             border-color: hsl(var(--primary));
           }
-          .campus-button.selected span { color: hsl(var(--primary-foreground)); }
+          .campus-button.selected span {
+            color: hsl(var(--primary-foreground));
+          }
         `}
       </style>
     </div>

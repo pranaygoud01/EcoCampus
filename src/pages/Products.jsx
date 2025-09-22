@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import React from "react";
 
 const Products = () => {
@@ -60,7 +61,7 @@ const Products = () => {
                   img: "https://images.unsplash.com/photo-1574607383077-47ddc2dc51c4?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 }
               ].map((product, index) => (
-                <div
+                <Link to="/browse/product"
                   key={index}
                   className="group relative flex flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
@@ -75,7 +76,7 @@ const Products = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400">{product.desc}</p>
                     <p className="mt-2 text-lg font-semibold text-blue-500">{product.price}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

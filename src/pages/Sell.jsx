@@ -30,7 +30,7 @@ const Sell = () => {
                 name="title"
                 id="title"
                 placeholder="e.g., Gently Used Lab Coat"
-                className="mt-1 block p-3 w-full bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full border  dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg  focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
               />
             </div>
 
@@ -46,7 +46,7 @@ const Sell = () => {
                 id="description"
                 rows="4"
                 placeholder="Describe your item in detail, including condition, size, etc."
-                className="mt-1 block p-3 w-full bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full border  dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg  focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
               ></textarea>
             </div>
 
@@ -61,7 +61,7 @@ const Sell = () => {
                 <select
                   id="category"
                   name="category"
-                  className="mt-1 block w-full p-3 bg-neutral-50 dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
+                  className="mt-1 block w-full p-3 border  dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg  focus:ring-primary focus:border-primary sm:text-sm"
                 >
                   <option value="" disabled selected>
                     Select a category
@@ -70,7 +70,7 @@ const Sell = () => {
                   <option>Gadgets</option>
                   <option>Lab Coats</option>
                   <option>Instruments</option>
-                  <option>Furniture</option>
+                  <option>Others</option>
                 </select>
               </div>
 
@@ -81,33 +81,33 @@ const Sell = () => {
                 >
                   Price
                 </label>
-                <div className="mt-1 relative rounded-lg shadow-sm">
+                <div className="mt-1 relative rounded-lg ">
                   <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <span className="text-gray-500 sm:text-sm">$</span>
+                    <span className="text-gray-500 sm:text-sm">&#8377;</span>
                   </div>
                   <input
                     type="text"
                     name="price"
                     id="price"
                     placeholder="0.00"
-                    className="block w-full bg-neutral-50 pl-7 p-3 pr-12 bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                    className="block w-full border  pl-7 p-3 pr-12 bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 pr-3 flex items-center">
-                    <span className="text-gray-500 sm:text-sm">USD</span>
+                    <span className="text-gray-500 sm:text-sm">INR</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-gray-700 ">
                 Photos
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg bg-background-light dark:bg-background-dark/20 hover:border-primary/50 dark:hover:border-primary/50 transition-colors">
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300  border-dashed rounded-lg bg-background-light dark:bg-background-dark/20 hover:border-primary/50 dark:hover:border-primary/50 transition-colors">
                 <div className="space-y-1 text-center">
                   <svg
                     aria-hidden="true"
-                    className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
+                    className="mx-auto h-12 w-12 text-gray-400 "
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 48 48"
@@ -119,7 +119,7 @@ const Sell = () => {
                       strokeWidth="2"
                     ></path>
                   </svg>
-                  <div className="flex text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex text-sm text-gray-600 ">
                     <label
                       htmlFor="file-upload"
                       className="relative cursor-pointer bg-transparent rounded font-medium text-primary hover:text-primary/80 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
@@ -135,7 +135,7 @@ const Sell = () => {
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-500">
+                  <p className="text-xs text-gray-500 ">
                     PNG, JPG, GIF up to 10MB
                   </p>
                 </div>
@@ -145,7 +145,7 @@ const Sell = () => {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-base font-semibold rounded-lg text-white bg-blue-500 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
+                className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent  text-base font-semibold rounded-lg text-white bg-blue-500 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all"
               >
                 Create Listing
               </button>

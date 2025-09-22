@@ -3,20 +3,18 @@ import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaBoxOpen } from "react-icons/fa";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
+import logo from "../assets/logo.png"
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menu = ["Browse", "Sell", "About"];
 
   return (
-    <div className="w-full px-6 md:px-20 py-4 sticky backdrop-blur-sm  top-0  z-50 flex border-b border-b-neutral-200 justify-between items-center">
+    <div className="w-full px-6 md:px-20 py-4 sticky bg-white  top-0  z-50 flex border-b border-b-neutral-200 justify-between items-center">
       {/* Left Logo + Menu */}
       <div className="flex items-center gap-5">
-        <h1 className="font-bold poppins text-neutral-800 max-lg:text-lg text-xl flex items-center gap-3">
-          <span className="text-blue-500">
-            <FaBoxOpen />
-          </span>
-          LootBoxx
-        </h1>
+        <Link to="/" className="font-bold  text-blue-500 max-lg:text-lg text-xl flex items-center gap-1">
+         <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto"/>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex">
