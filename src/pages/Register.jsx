@@ -1,16 +1,15 @@
-import React from "react";
-import { FaBoxOpen } from "react-icons/fa";
+import { Link } from "@tanstack/react-router";
+import logo from "../assets/logo.png"
 
 const Register = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center  dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md">
         {/* Logo + Title */}
-        <div className="text-center mb-8">
-          <h1 className="flex items-center justify-center gap-2 text-2xl sm:text-3xl font-bold text-blue-500">
-            <FaBoxOpen className="text-3xl sm:text-4xl" />
-            LootBoxx
-          </h1>
+        <div className="flex justify-center flex-col items-center mb-8">
+           <Link to="/" className="font-bold  text-black max-lg:text-lg text-xl flex items-center gap-1">
+                             <img src={logo} className="h-[50px] max-lg:h-[40px] w-auto"/>
+                            </Link>
           <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
             Join today and start exchanging campus essentials.
           </p>
@@ -18,7 +17,7 @@ const Register = () => {
 
         {/* Register Card */}
         <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg">
-          <h2 className="text-center text-lg sm:text-xl font-semibold text-blue-500 mb-6">
+          <h2 className="text-center text-lg sm:text-xl font-semibold text-black mb-6">
             Create Account
           </h2>
 
@@ -95,7 +94,7 @@ const Register = () => {
                 type="submit"
                 className="w-full flex justify-center py-2.5 px-4 rounded-md shadow-sm 
                            text-sm sm:text-base font-medium text-white 
-                           bg-blue-500 hover:bg-blue-600 
+                           bg-neutral-900 hover:bg-black 
                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
                            transition"
               >
@@ -109,11 +108,11 @@ const Register = () => {
         <div className="mt-6 text-center px-4">
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
             By signing up, you agree to our{" "}
-            <a href="#" className="text-blue-500 hover:underline font-medium">
+            <a href="#" className="text-black hover:underline font-medium">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-blue-500 hover:underline font-medium">
+            <a href="#" className="text-black hover:underline font-medium">
               Privacy Policy
             </a>
             .

@@ -12,7 +12,7 @@ const NavBar = () => {
     <div className="w-full px-6 md:px-20 py-4 sticky bg-white  top-0  z-50 flex border-b border-b-neutral-200 justify-between items-center">
       {/* Left Logo + Menu */}
       <div className="flex items-center gap-5">
-        <Link to="/" className="font-bold  text-blue-500 max-lg:text-lg text-xl flex items-center gap-1">
+        <Link to="/" className="font-bold  text-black max-lg:text-lg text-xl flex items-center gap-1">
          <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto"/>
         </Link>
 
@@ -45,11 +45,11 @@ const NavBar = () => {
         <div className="flex gap-2">
           <Link
             to="/login"
-            className="font-semibold text-blue-500 bg-neutral-100 rounded-lg px-4 py-2 text-xs"
+            className="font-semibold text-black bg-neutral-100 rounded-lg px-4 py-2 text-xs"
           >
             Login
           </Link>
-          <Link  to="/register" className="font-semibold text-white bg-blue-500 rounded-lg px-4 py-2 text-xs">
+          <Link  to="/register" className="font-semibold text-white bg-black rounded-lg px-4 py-2 text-xs">
             Register
           </Link>
         </div>
@@ -79,13 +79,13 @@ const NavBar = () => {
           <div className="flex flex-col gap-2">
             <Link
               to="/login"
-              className="font-semibold text-center text-blue-500 bg-blue-100 rounded-lg px-4 py-2 text-sm"
+              className="font-semibold text-center text-black bg-neutral-100 rounded-lg px-4 py-2 text-sm"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className="font-semibold text-white text-center bg-blue-500 rounded-lg px-4 py-2 text-sm"
+              className="font-semibold text-white text-center bg-black rounded-lg px-4 py-2 text-sm"
             >
               Register
             </Link>

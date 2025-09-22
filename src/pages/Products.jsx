@@ -16,7 +16,7 @@ const Products = () => {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <button className="rounded-lg bg-blue-100 px-4 py-2 text-sm font-medium text-blue-500 hover:bg-blue-200 dark:bg-blue-200 dark:hover:bg-blue-300">
+              <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-blue-200 ">
                 Books
               </button>
               <button className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
@@ -74,7 +74,7 @@ const Products = () => {
                       {product.title}
                     </h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{product.desc}</p>
-                    <p className="mt-2 text-lg font-semibold text-blue-500">{product.price}</p>
+                    <p className="mt-2 text-lg font-semibold text-black">{product.price}</p>
                   </div>
                 </Link>
               ))}

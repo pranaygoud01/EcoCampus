@@ -70,10 +70,10 @@ const SingleProduct = () => {
 
               {/* Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button className="w-full h-12 rounded-lg bg-neutral-100 text-blue-500 font-bold hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                <button className="w-full h-12 rounded-lg bg-neutral-100 text-black font-bold hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
                   Chat on Whatsapp
                 </button>
-                <button className="w-full h-12 rounded-lg bg-blue-500 text-white font-bold hover:opacity-90 transition-opacity">
+                <button className="w-full h-12 rounded-lg bg-black text-white font-bold hover:opacity-90 transition-opacity">
                   Buy Now
                 </button>
               </div>

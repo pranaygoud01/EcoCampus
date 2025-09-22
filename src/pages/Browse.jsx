@@ -83,7 +83,7 @@ const Browse = () => {
           <div className="mt-12">
             <button
               onClick={() => navigate({ to: "/browse/products" })}
-              className={`w-full sm:w-auto inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-sm text-base font-semibold rounded-full text-white bg-blue-500 ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-xl text-white bg-black ${
                 !selectedCampus ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={!selectedCampus}
