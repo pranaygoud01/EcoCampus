@@ -1,14 +1,56 @@
-import { Link } from "@tanstack/react-router";
-import logo from "../assets/logo.png"
+import { Link, useNavigate } from "@tanstack/react-router";
+import logo from "../assets/logo.png";
+import { useState } from "react";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const baseUrl = import.meta.env.VITE_API_URL;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch(`${baseUrl}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.msg || "Login failed");
+      } else {
+        // Save token in localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Redirect (adjust path as needed)
+        navigate({ to: "/" });
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center  dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md">
         {/* Logo + Title */}
         <div className="flex justify-center flex-col items-center mb-8">
-           <Link to="/" className="font-bold  text-black max-lg:text-lg text-xl flex items-center gap-1">
-                   <img src={logo} className="h-[50px] max-lg:h-[40px] w-auto"/>
-                  </Link>
+          <Link
+            to="/"
+            className="font-bold text-black max-lg:text-lg text-xl flex items-center gap-1"
+          >
+            <img src={logo} className="h-[50px] max-lg:h-[40px] w-auto" />
+          </Link>
           <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
             Your one-stop shop for campus essentials.
           </p>
@@ -20,7 +62,7 @@ const Login = () => {
             Login
           </h2>
 
-          <form className="space-y-5 sm:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             {/* Email */}
             <div>
               <label
@@ -33,6 +75,8 @@ const Login = () => {
                 id="email"
                 type="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                            rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 
@@ -55,6 +99,8 @@ const Login = () => {
                 id="password"
                 type="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                            rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 
@@ -65,30 +111,33 @@ const Login = () => {
               />
             </div>
 
-            {/* Forgot Password */}
-            <div className="flex items-center justify-between">
-              <a
-                href="#"
-                className="text-xs sm:text-sm font-medium text-black hover:underline"
-              >
-                Forgot your password?
-              </a>
-            </div>
+            {/* Error */}
+            
 
             {/* Submit */}
             <div>
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full flex justify-center py-2.5 px-4 rounded-md shadow-sm 
                            text-sm sm:text-base font-medium text-white 
                            bg-neutral-900 hover:bg-black 
                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
-                           transition"
+                           transition disabled:opacity-50"
               >
-                Login to Sell
+                {loading ? "Logging in..." : "Login to Sell"}
               </button>
             </div>
           </form>
+          <p className="text-xs font-semibold mt-4 text-neutral-600">
+            You don't have an account{" "}
+            <span className="text-black underline">
+              <Link to="/register">Register here</Link>
+            </span>
+          </p>
+          {error && (
+              <p className="text-red-500 mt-5  text-sm text-center">{error}</p>
+            )}
         </div>
 
         {/* Terms */}
