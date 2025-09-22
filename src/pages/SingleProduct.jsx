@@ -1,9 +1,33 @@
-import React from "react";
+// pages/SingleProduct.jsx
+import React, { useEffect, useState } from "react";
+import { useParams } from "@tanstack/react-router";
+import axios from "axios";
+
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const SingleProduct = () => {
+  const { id } = useParams({ from: "/browse/product/$id" });
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/api/products/${id}`)
+      .then((res) => setProduct(res.data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return <div className="text-center mt-10">Loading...</div>;
+  }
+
+  if (!product) {
+    return <div className="text-center mt-10">Product not found</div>;
+  }
+
   return (
     <div className="font-display bg-background-light dark:bg-background-dark text-[#0D141B] dark:text-background-light min-h-screen flex flex-col">
-      {/* Main */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
@@ -19,10 +43,9 @@ const SingleProduct = () => {
             {/* Hero Image */}
             <div className="lg:col-span-3">
               <div
-                className="w-full h-full rounded-xl bg-cover bg-center min-h-[400px]" // Ensure it has minimum height
+                className="w-full h-full rounded-xl bg-cover bg-center min-h-[400px]"
                 style={{
-                  backgroundImage:
-                    'url("https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+                  backgroundImage: `url(${product.image})`,
                 }}
               ></div>
             </div>
@@ -31,19 +54,15 @@ const SingleProduct = () => {
             <div className="lg:col-span-2 flex flex-col space-y-6">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                  Organic Chemistry Textbook - 8th Edition
+                  {product.name}
                 </h1>
                 <p className="mt-4 text-2xl sm:text-3xl font-bold text-primary">
-                  $45.00
+                  ₹{product.price}
                 </p>
               </div>
 
-              <div className="prose prose-sm sm:prose base text-black/80 dark:text-white/80">
-                <p>
-                  This textbook is in excellent condition with minimal
-                  highlighting. Perfect for your upcoming Organic Chemistry
-                  course. ISBN: 978-1234567890
-                </p>
+              <div className="prose prose-sm sm:prose-base text-black/80 dark:text-white/80">
+                <p>{product.description}</p>
               </div>
 
               {/* Seller Info */}
@@ -55,14 +74,18 @@ const SingleProduct = () => {
                   <div
                     className="h-14 w-14 rounded-full bg-cover bg-center flex-shrink-0"
                     style={{
-                      backgroundImage:
-                        'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCohBjt9se81uF6a3DMu0ETbgIAz5eaXVZ_AmBBW9asjrptAOBiqa68_xQ31pzl_kFimelA3v4MogRDs4WQdt8QCXEwXcLByoSDDWfUQzZm-KC8jTtLsycQIcLl05yJ13tInqFSYb-6Y8rq0wV7Q0iHg52AdJpff8KwVunB4jJczJ8DTwiPeXESmrHPgWvhEvNT1qyTArYa9VSeigAIN7ail3O_pfWo7Lnde6DEQsMG8lqyE2PYxA3oGHsrNwJooCiXnEQd3stJcYY")',
+                      backgroundImage: `url(${
+                        product.seller?.avatar ||
+                        "https://avatar.iran.liara.run/public/48"
+                      })`,
                     }}
                   ></div>
                   <div>
-                    <p className="font-semibold">Sophia Clark</p>
+                    <p className="font-semibold">
+                      {product.seller?.name || "Unknown Seller"}
+                    </p>
                     <p className="text-sm text-black/60 dark:text-white/60">
-                      Joined 2022
+                      {product.seller?.email || ""}
                     </p>
                   </div>
                 </div>
@@ -70,12 +93,20 @@ const SingleProduct = () => {
 
               {/* Buttons */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button className="w-full h-12 rounded-lg bg-neutral-100 text-black font-bold hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                <a
+                  href={`https://wa.me/${product.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-12 flex items-center justify-center rounded-lg bg-neutral-100 text-black font-bold hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+                >
                   Chat on Whatsapp
-                </button>
-                <button className="w-full h-12 rounded-lg bg-black text-white font-bold hover:opacity-90 transition-opacity">
+                </a>
+                <a
+                  href={`tel:${product?.contact || ""}`}
+                  className="w-full h-12 flex items-center justify-center rounded-lg bg-black text-white font-bold hover:opacity-90 transition-opacity"
+                >
                   Buy Now
-                </button>
+                </a>
               </div>
             </div>
           </div>

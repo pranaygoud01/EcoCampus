@@ -16,7 +16,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseIndexRouteImport } from './routes/browse/index'
 import { Route as BrowseProductsRouteImport } from './routes/browse/products'
-import { Route as BrowseProductRouteImport } from './routes/browse/product'
+import { Route as BrowseProductIdRouteImport } from './routes/browse/product/$id'
 
 const SellRoute = SellRouteImport.update({
   id: '/sell',
@@ -53,9 +53,9 @@ const BrowseProductsRoute = BrowseProductsRouteImport.update({
   path: '/browse/products',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BrowseProductRoute = BrowseProductRouteImport.update({
-  id: '/browse/product',
-  path: '/browse/product',
+const BrowseProductIdRoute = BrowseProductIdRouteImport.update({
+  id: '/browse/product/$id',
+  path: '/browse/product/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -65,9 +65,9 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
-  '/browse/product': typeof BrowseProductRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
+  '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -75,9 +75,9 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
-  '/browse/product': typeof BrowseProductRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
+  '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -86,9 +86,9 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
-  '/browse/product': typeof BrowseProductRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse/': typeof BrowseIndexRoute
+  '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,9 +98,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
-    | '/browse/product'
     | '/browse/products'
     | '/browse'
+    | '/browse/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -108,9 +108,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
-    | '/browse/product'
     | '/browse/products'
     | '/browse'
+    | '/browse/product/$id'
   id:
     | '__root__'
     | '/'
@@ -118,9 +118,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
-    | '/browse/product'
     | '/browse/products'
     | '/browse/'
+    | '/browse/product/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -129,9 +129,9 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
-  BrowseProductRoute: typeof BrowseProductRoute
   BrowseProductsRoute: typeof BrowseProductsRoute
   BrowseIndexRoute: typeof BrowseIndexRoute
+  BrowseProductIdRoute: typeof BrowseProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,11 +185,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/browse/product': {
-      id: '/browse/product'
-      path: '/browse/product'
-      fullPath: '/browse/product'
-      preLoaderRoute: typeof BrowseProductRouteImport
+    '/browse/product/$id': {
+      id: '/browse/product/$id'
+      path: '/browse/product/$id'
+      fullPath: '/browse/product/$id'
+      preLoaderRoute: typeof BrowseProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -201,9 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
-  BrowseProductRoute: BrowseProductRoute,
   BrowseProductsRoute: BrowseProductsRoute,
   BrowseIndexRoute: BrowseIndexRoute,
+  BrowseProductIdRoute: BrowseProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
