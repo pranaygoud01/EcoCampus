@@ -33,10 +33,10 @@ const Browse = () => {
   };
 
   return (
-    <div className="h-[90vh] flex flex-col bg-background font-display text-foreground">
-      <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="h-[80vh] max-lg:p-5 flex flex-col bg-background font-display text-foreground">
+      <main className="flex-grow flex items-center justify-center  sm:p-6 lg:p-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
             Find Your Campus
           </h2>
           <p className="mt-4 max-w-xl text-sm text-neutral-500">
@@ -54,7 +54,7 @@ const Browse = () => {
                 placeholder="Search for your campus..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full bg-background border border-neutral-300 rounded-xl py-3 pl-10 pr-4 text-base shadow-sm outline-0"
+                className="w-full bg-background border max-lg:text-sm border-neutral-300 rounded-xl py-3 pl-10 pr-4 text-base shadow-sm outline-0"
               />
             </div>
           </div>
@@ -68,12 +68,12 @@ const Browse = () => {
               {campusList.map((campus, idx) => (
                 <button
                   key={idx}
-                  className={`campus-button flex items-center justify-center p-3 border border-neutral-400 rounded-lg bg-background ${
+                  className={`campus-button flex  items-center justify-center p-3 border border-neutral-200 rounded-lg bg-background ${
                     selectedCampus === campus ? "selected" : ""
                   }`}
                   onClick={() => handleSelectCampus(campus)}
                 >
-                  <span className="font-medium text-sm">{campus}</span>
+                  <span className="font-medium  max-lg:text-xs text-sm">{campus}</span>
                 </button>
               ))}
             </div>
@@ -83,7 +83,7 @@ const Browse = () => {
           <div className="mt-12">
             <button
               onClick={() => navigate({ to: "/browse/products" })}
-              className={`w-full sm:w-auto inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-xl text-white bg-black ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center py-3 max-lg:py-2 max-lg:px-4 px-8 border border-transparent shadow-sm text-sm font-semibold rounded-xl text-white bg-black ${
                 !selectedCampus ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={!selectedCampus}

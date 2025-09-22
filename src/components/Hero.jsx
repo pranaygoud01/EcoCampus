@@ -23,8 +23,8 @@ const Hero = () => {
         
 
         <div className="flex gap-2 items-center mt-5">
-            <Link to="/register" className="font-semibold text-black bg-white rounded-lg px-5 py-2 text-sm">Register</Link>
-         <Link to="/browse" className="font-semibold text-white  bg-white/20 rounded-lg px-4 py-2 text-sm ">Browse Items</Link>
+            <Link to="/register" className="font-semibold text-white bg-black/60 hover:bg-black rounded-lg px-5 py-2 text-sm">Register</Link>
+         <Link to="/browse" className="font-semibold text-black bg-white rounded-lg px-4 py-2 text-sm ">Browse Items</Link>
               
         </div>
       </div>
