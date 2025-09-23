@@ -14,6 +14,14 @@ function RootComponent() {
   const pathname = router.location.pathname
   const hideLayout = pathname === '/login' || pathname === '/register'
 
+  // Smooth scroll to top on route change
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [pathname])
+
   return (
     <React.Fragment>
       {!hideLayout && <NavBar />}
