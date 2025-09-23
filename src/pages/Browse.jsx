@@ -7,22 +7,23 @@ const Browse = () => {
   const navigate = useNavigate();
   const [campuses, setCampuses] = useState([]);
   const [popularCampuses, setPopularCampuses] = useState([]);
-  const [selectedCampus, setSelectedCampus] = useState(null); // store full campus object
+  const [selectedCampus, setSelectedCampus] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(true); // 👈 loading state
   const baseUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    // Fetch campuses from API
     const fetchCampuses = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(`${baseUrl}/api/campuses`);
         setCampuses(res.data);
-
-        // Assuming API returns campuses with a "popularity" score or just take first 6
         setPopularCampuses(res.data.slice(0, 6));
       } catch (err) {
         console.error("Failed to fetch campuses", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -45,13 +46,11 @@ const Browse = () => {
       return;
     }
 
-    // Filter campuses for suggestions
     const filtered = campuses.filter((campus) =>
       campus.name.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(filtered);
 
-    // If exact match, set selected campus
     const exactMatch = campuses.find(
       (campus) => campus.name.toLowerCase() === value.toLowerCase()
     );
@@ -61,15 +60,10 @@ const Browse = () => {
   const handleContinue = () => {
     if (!selectedCampus) return;
 
-    // Save campusId to localStorage
     localStorage.setItem("campusId", selectedCampus._id);
-    localStorage.setItem("campus",selectedCampus.name);
+    localStorage.setItem("campus", selectedCampus.name);
 
-    // Navigate to products page
-    navigate({
-      to: `/browse/products`,
-       // optional, can be removed if you just rely on localStorage
-    });
+    navigate({ to: `/browse/products` });
   };
 
   return (
@@ -118,20 +112,30 @@ const Browse = () => {
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
               Popular Campuses
             </h3>
+
             <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {popularCampuses.map((campus) => (
-                <button
-                  key={campus._id}
-                  className={`campus-button flex items-center justify-center p-3 border border-neutral-200 rounded-lg bg-background ${
-                    selectedCampus?._id === campus._id ? "selected" : ""
-                  }`}
-                  onClick={() => handleSelectCampus(campus)}
-                >
-                  <span className="font-medium max-lg:text-xs text-sm">
-                    {campus.name}
-                  </span>
-                </button>
-              ))}
+              {loading
+                ? // 🔹 Skeletons while loading
+                  Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-12 rounded-lg bg-neutral-200 animate-pulse"
+                    ></div>
+                  ))
+                : // 🔹 Actual campuses
+                  popularCampuses.map((campus) => (
+                    <button
+                      key={campus._id}
+                      className={`campus-button flex items-center justify-center p-3 border border-neutral-200 rounded-lg bg-background ${
+                        selectedCampus?._id === campus._id ? "selected" : ""
+                      }`}
+                      onClick={() => handleSelectCampus(campus)}
+                    >
+                      <span className="font-medium max-lg:text-xs text-sm">
+                        {campus.name}
+                      </span>
+                    </button>
+                  ))}
             </div>
           </div>
 
