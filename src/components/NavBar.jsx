@@ -133,7 +133,8 @@ const NavBar = () => {
       </div>
 
       {/* Hamburger Menu (Mobile) */}
-      <div className="md:hidden">
+      <div className="md:hidden flex items-center gap-2">
+        {isAuthenticated&&<div><img src={profile} className="w-6 h-6 rounded-full" /></div>}
         <button onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <IoClose size={22} /> : <IoMenuOutline size={22} />}
         </button>
@@ -141,7 +142,7 @@ const NavBar = () => {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="absolute top-17 left-0 w-9/12 h-[100vh] bg-white border-t border-neutral-200 flex flex-col gap-4 p-5 md:hidden shadow-lg">
+        <div className="absolute top-15 right-2 rounded-xl w-7/12 h-fit bg-white border-t border-neutral-200 flex flex-col gap-4 p-5 md:hidden shadow-lg">
           {menu.map((item) => {
             const path =
               item.toLowerCase() === "sell" && !isAuthenticated
