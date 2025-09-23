@@ -82,7 +82,7 @@ const Products = () => {
                           {product.description}
                         </p>
                         <p className="mt-2 text-lg font-semibold text-black">
-                          ${product.price}
+                          &#8377;{product.price}
                         </p>
                       </div>
                     </Link>
