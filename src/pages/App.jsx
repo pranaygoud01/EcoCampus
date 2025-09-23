@@ -7,7 +7,6 @@ import Colleges from '../components/Colleges'
 const App = () => {
   return (
     <div>
-     
       <Hero/>
       <Colleges/>
       <Process/>
