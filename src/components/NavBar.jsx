@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
@@ -11,7 +11,7 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const navigate=useNavigate();
   const menu = ["Browse", "Sell", "About"];
 
   useEffect(() => {
@@ -29,14 +29,21 @@ const NavBar = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setIsAuthenticated(false);
-    setDropdownOpen(false);
+ const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  setIsAuthenticated(false);
+  setDropdownOpen(false);
 
+  if (window.location.pathname === "/") {
+    // Already on home → reload
     window.location.reload();
-  };
+  } else {
+    // Navigate to home
+    navigate({ to: "/" });
+  }
+};
+
 
   return (
     <div className="w-full px-6 md:px-20 py-4 sticky bg-white top-0 z-50 flex border-b border-b-neutral-200 justify-between items-center">
