@@ -19,7 +19,45 @@ const SingleProduct = () => {
   }, [id]);
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return (
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 animate-pulse">
+          {/* Image skeleton */}
+          <div className="lg:col-span-3">
+            <div className="w-full h-[400px] rounded-xl bg-gray-300 dark:bg-gray-700"></div>
+          </div>
+
+          {/* Details skeleton */}
+          <div className="lg:col-span-2 flex flex-col space-y-6">
+            <div>
+              <div className="h-6 w-2/3 bg-gray-300 dark:bg-gray-700 rounded mb-4"></div>
+              <div className="h-8 w-1/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="h-4 w-full bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 w-5/6 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 w-2/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+            </div>
+
+            {/* Seller Info skeleton */}
+            <div className="rounded-lg bg-black/5 dark:bg-white/5 p-4 flex items-center gap-4">
+              <div className="h-14 w-14 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-1/2 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                <div className="h-3 w-2/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              </div>
+            </div>
+
+            {/* Buttons skeleton */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="h-12 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+              <div className="h-12 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (!product) {
