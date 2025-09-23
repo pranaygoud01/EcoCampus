@@ -136,7 +136,7 @@ const NavBar = () => {
       <div className="md:hidden flex items-center gap-2">
         {isAuthenticated&&<div><img src={profile} className="w-6 h-6 rounded-full" /></div>}
         <button onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <IoClose size={22} /> : <IoMenuOutline size={22} />}
+          {menuOpen ? <IoClose size={25} /> : <IoMenuOutline size={25} />}
         </button>
       </div>
 
