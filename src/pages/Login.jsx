@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import TermsPopup from "../components/TermsPopup";
+import PrivacyPopup from "../components/PrivacyPopup";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -8,7 +10,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showTerms, setShowTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+
   const baseUrl = import.meta.env.VITE_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -26,11 +32,8 @@ const Login = () => {
       if (!res.ok) {
         setError(data.msg || "Login failed");
       } else {
-        // Save token in localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-
-        // Redirect (adjust path as needed)
         navigate({ to: "/" });
       }
     } catch (err) {
@@ -111,9 +114,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Error */}
-            
-
             {/* Submit */}
             <div>
               <button
@@ -129,32 +129,50 @@ const Login = () => {
               </button>
             </div>
           </form>
+
+          {/* Error */}
+          {error && (
+            <p className="text-red-500 mt-5 text-sm text-center">{error}</p>
+          )}
+
           <p className="text-xs font-semibold mt-4 text-neutral-600">
             You don't have an account{" "}
             <span className="text-black underline">
               <Link to="/register">Register here</Link>
             </span>
           </p>
-          {error && (
-              <p className="text-red-500 mt-5  text-sm text-center">{error}</p>
-            )}
         </div>
 
         {/* Terms */}
         <div className="mt-6 text-center px-4">
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
             By continuing, you agree to our{" "}
-            <a href="#" className="text-black hover:underline font-medium">
+            <button
+              type="button"
+              onClick={() => setShowTerms(true)}
+              className="text-black hover:underline cursor-pointer font-medium"
+            >
               Terms of Service
-            </a>{" "}
+            </button>{" "}
             and{" "}
-            <a href="#" className="text-black hover:underline font-medium">
+            <button
+              type="button"
+              onClick={() => setShowPrivacy(true)}
+              className="text-black hover:underline cursor-pointer font-medium"
+            >
               Privacy Policy
-            </a>
+            </button>
             .
           </p>
         </div>
       </div>
+
+      {/* Popups */}
+      <TermsPopup isOpen={showTerms} onClose={() => setShowTerms(false)} />
+      <PrivacyPopup
+        isOpen={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+      />
     </div>
   );
 };
