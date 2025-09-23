@@ -34,6 +34,8 @@ const NavBar = () => {
     localStorage.removeItem("user");
     setIsAuthenticated(false);
     setDropdownOpen(false);
+
+    window.location.reload();
   };
 
   return (
@@ -114,11 +116,11 @@ const NavBar = () => {
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 font-semibold w-40 bg-white border border-neutral-200 rounded-lg shadow-lg p-2">
                 <Link
-                  to="/profile"
+                  to="/dashboard"
                   className="block px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 rounded"
                   onClick={() => setDropdownOpen(false)}
                 >
-                  Profile
+                  Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
@@ -187,16 +189,17 @@ const NavBar = () => {
                 </span>
               </div>
               <Link
-                to="/profile"
+                to="/dashboard"
                 className="font-semibold text-neutral-700 text-sm  py-1 rounded hover:bg-neutral-100"
                 onClick={() => setMenuOpen(false)}
               >
-                Profile
+                Dashboard
               </Link>
               <button
                 onClick={() => {
                   handleLogout();
                   setMenuOpen(false);
+                  
                 }}
                 className="text-left font-semibold text-red-600 text-sm  py-1 rounded hover:bg-neutral-100"
               >

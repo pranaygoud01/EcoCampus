@@ -24,7 +24,7 @@ const SingleProduct = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 animate-pulse">
           {/* Image skeleton */}
           <div className="lg:col-span-3">
-            <div className="w-full h-[400px] rounded-xl bg-gray-300 dark:bg-gray-700"></div>
+            <div className="w-full h-[600px] max-lg:h-[400px] rounded-xl bg-gray-300 dark:bg-gray-700"></div>
           </div>
 
           {/* Details skeleton */}
@@ -61,7 +61,7 @@ const SingleProduct = () => {
   }
 
   if (!product) {
-    return <div className="text-center mt-10">Product not found</div>;
+    return <div className="text-center font-semibold text-neutral-500 mt-10">Product not found</div>;
   }
 
   return (
@@ -81,7 +81,7 @@ const SingleProduct = () => {
             {/* Hero Image */}
             <div className="lg:col-span-3">
               <div
-                className="w-full h-full rounded-xl bg-cover bg-center min-h-[400px]"
+                className="w-full  rounded-xl bg-cover bg-center  max-lg:h-[400px] h-[600px]"
                 style={{
                   backgroundImage: `url(${product.image})`,
                 }}
@@ -89,12 +89,12 @@ const SingleProduct = () => {
             </div>
 
             {/* Details */}
-            <div className="lg:col-span-2 flex flex-col space-y-6">
+            <div className="lg:col-span-2 flex flex-col max-lg:space-y-3 space-y-6">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
                   {product.name}
                 </h1>
-                <p className="mt-4 text-2xl sm:text-3xl font-bold text-primary">
+                <p className="mt-4 max-lg:mt-2 text-2xl sm:text-3xl font-bold text-primary">
                   ₹{product.price}
                 </p>
               </div>
