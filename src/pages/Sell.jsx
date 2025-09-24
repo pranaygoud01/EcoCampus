@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Sell = () => {
   const [formData, setFormData] = useState({
@@ -82,7 +83,7 @@ const Sell = () => {
       console.log(data);
 
       if (response.ok) {
-        alert("Product created successfully!");
+        toast.success("Product created successfully!");
         setFormData({
           name: "",
           description: "",
@@ -94,7 +95,7 @@ const Sell = () => {
         });
         setImageFile(null);
       } else {
-        alert(`Error: ${data.msg || "Something went wrong"}`);
+        toast.error(`Error: ${data.msg || "Something went wrong"}`);
       }
     } catch (err) {
       console.error(err);
@@ -105,7 +106,7 @@ const Sell = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200 relative">
+    <div className="flex flex-col min-h-screen bg-background-light :bg-background- font-display text-gray-800 :text-gray-200 relative">
       {/* Full-page loading overlay */}
       {submitting && (
         <div className="absolute inset-0 bg-black/10 bg-opacity-50 flex justify-center items-center z-50">
@@ -135,10 +136,10 @@ const Sell = () => {
       <main className="flex-grow container mx-auto px-5 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 :text-white">
               Create a new listing
             </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 :text-gray-400">
               Fill out the details below to post your item on the marketplace.
             </p>
           </div>
@@ -148,7 +149,7 @@ const Sell = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 :text-gray-300"
               >
                 Title
               </label>
@@ -159,7 +160,7 @@ const Sell = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="e.g., Gently Used Lab Coat"
-                className="mt-1 block p-3 w-full border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 :placeholder-gray-500"
               />
             </div>
 
@@ -167,7 +168,7 @@ const Sell = () => {
             <div>
               <label
                 htmlFor="description"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 :text-gray-300"
               >
                 Description
               </label>
@@ -178,7 +179,7 @@ const Sell = () => {
                 onChange={handleChange}
                 rows={4}
                 placeholder="Describe your item in detail, including condition, size, etc."
-                className="mt-1 block p-3 w-full border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                className="mt-1 block p-3 w-full border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 :placeholder-gray-500"
               ></textarea>
             </div>
 
@@ -187,7 +188,7 @@ const Sell = () => {
               <div>
                 <label
                   htmlFor="category"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 :text-gray-300"
                 >
                   Category
                 </label>
@@ -196,7 +197,7 @@ const Sell = () => {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-3 border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm"
+                  className="mt-1 block w-full p-3 border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm"
                 >
                   <option value="" disabled>
                     Select a category
@@ -212,7 +213,7 @@ const Sell = () => {
               <div>
                 <label
                   htmlFor="price"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 :text-gray-300"
                 >
                   Price
                 </label>
@@ -227,7 +228,7 @@ const Sell = () => {
                     value={formData.price}
                     onChange={handleChange}
                     placeholder="0.00"
-                    className="block w-full border pl-7 p-3 pr-12 bg-background-light dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                    className="block w-full border pl-7 p-3 pr-12 bg-background-light :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 :placeholder-gray-500"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 pr-3 flex items-center">
                     <span className="text-gray-500 sm:text-sm">INR</span>
@@ -241,7 +242,7 @@ const Sell = () => {
               <div>
                 <label
                   htmlFor="whatsapp"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 :text-gray-300"
                 >
                   WhatsApp Number
                 </label>
@@ -252,14 +253,14 @@ const Sell = () => {
                   value={formData.whatsapp}
                   onChange={handleChange}
                   placeholder="e.g., +919876543210"
-                  className="mt-1 block p-3 w-full border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                  className="mt-1 block p-3 w-full border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 :placeholder-gray-500"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="contact"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  className="block text-sm font-medium text-gray-700 :text-gray-300"
                 >
                   Contact Number
                 </label>
@@ -270,7 +271,7 @@ const Sell = () => {
                   value={formData.contact}
                   onChange={handleChange}
                   placeholder="e.g., +919876543210"
-                  className="mt-1 block p-3 w-full border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                  className="mt-1 block p-3 w-full border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm placeholder-gray-400 :placeholder-gray-500"
                 />
               </div>
             </div>
@@ -279,7 +280,7 @@ const Sell = () => {
             <div>
               <label
                 htmlFor="campus"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 :text-gray-300"
               >
                 Campus
               </label>
@@ -291,7 +292,7 @@ const Sell = () => {
                   name="campus"
                   value={formData.campus}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-3 border dark:bg-background-dark border-gray-300 dark:border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm"
+                  className="mt-1 block w-full p-3 border :bg-background- border-gray-300 :border-gray-600 rounded-lg focus:ring-primary focus:border-primary sm:text-sm"
                 >
                   <option value="" disabled>
                     Select a campus
@@ -311,7 +312,7 @@ const Sell = () => {
                 Photos
               </label>
 
-              <label className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg bg-background-light dark:bg-background-dark/20 hover:border-primary/50 dark:hover:border-primary/50 cursor-pointer transition-colors">
+              <label className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg bg-background-light :bg-background-/20 hover:border-primary/50 :hover:border-primary/50 cursor-pointer transition-colors">
                 <input
                   type="file"
                   accept="image/*"

@@ -24,35 +24,35 @@ const SingleProduct = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 animate-pulse">
           {/* Image skeleton */}
           <div className="lg:col-span-3">
-            <div className="w-full h-[600px] max-lg:h-[400px] rounded-xl bg-gray-300 dark:bg-gray-700"></div>
+            <div className="w-full h-[600px] max-lg:h-[400px] rounded-xl bg-gray-300 :bg-gray-700"></div>
           </div>
 
           {/* Details skeleton */}
           <div className="lg:col-span-2 flex flex-col space-y-6">
             <div>
-              <div className="h-6 w-2/3 bg-gray-300 dark:bg-gray-700 rounded mb-4"></div>
-              <div className="h-8 w-1/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-6 w-2/3 bg-gray-300 :bg-gray-700 rounded mb-4"></div>
+              <div className="h-8 w-1/3 bg-gray-300 :bg-gray-700 rounded"></div>
             </div>
 
             <div className="space-y-2">
-              <div className="h-4 w-full bg-gray-300 dark:bg-gray-700 rounded"></div>
-              <div className="h-4 w-5/6 bg-gray-300 dark:bg-gray-700 rounded"></div>
-              <div className="h-4 w-2/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="h-4 w-full bg-gray-300 :bg-gray-700 rounded"></div>
+              <div className="h-4 w-5/6 bg-gray-300 :bg-gray-700 rounded"></div>
+              <div className="h-4 w-2/3 bg-gray-300 :bg-gray-700 rounded"></div>
             </div>
 
             {/* Seller Info skeleton */}
-            <div className="rounded-lg bg-black/5 dark:bg-white/5 p-4 flex items-center gap-4">
-              <div className="h-14 w-14 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+            <div className="rounded-lg bg-black/5 :bg-white/5 p-4 flex items-center gap-4">
+              <div className="h-14 w-14 rounded-full bg-gray-300 :bg-gray-700"></div>
               <div className="flex-1 space-y-2">
-                <div className="h-4 w-1/2 bg-gray-300 dark:bg-gray-700 rounded"></div>
-                <div className="h-3 w-2/3 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                <div className="h-4 w-1/2 bg-gray-300 :bg-gray-700 rounded"></div>
+                <div className="h-3 w-2/3 bg-gray-300 :bg-gray-700 rounded"></div>
               </div>
             </div>
 
             {/* Buttons skeleton */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="h-12 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
-              <div className="h-12 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+              <div className="h-12 rounded-lg bg-gray-300 :bg-gray-700"></div>
+              <div className="h-12 rounded-lg bg-gray-300 :bg-gray-700"></div>
             </div>
           </div>
         </div>
@@ -65,16 +65,16 @@ const SingleProduct = () => {
   }
 
   return (
-    <div className="font-display bg-background-light dark:bg-background-dark text-[#0D141B] dark:text-background-light min-h-screen flex flex-col">
+    <div className="font-display bg-background-light :bg-background- text-[#0D141B] :text-background-light min-h-screen flex flex-col">
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
-          <div className="mb-6 text-sm font-medium text-black/60 dark:text-white/60">
+          <div className="mb-6 text-sm font-medium text-black/60 :text-white/60">
             <a href="#" className="hover:text-primary">
               Marketplace
             </a>
             <span className="mx-1">/</span>
-            <span className="text-black/90 dark:text-white/90">Product</span>
+            <span className="text-black/90 :text-white/90">Product</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -99,12 +99,12 @@ const SingleProduct = () => {
                 </p>
               </div>
 
-              <div className="prose prose-sm sm:prose-base text-black/80 dark:text-white/80">
+              <div className="prose prose-sm sm:prose-base text-black/80 :text-white/80">
                 <p>{product.description}</p>
               </div>
 
               {/* Seller Info */}
-              <div className="rounded-lg bg-black/5 dark:bg-white/5 p-4">
+              <div className="rounded-lg bg-black/5 :bg-white/5 p-4">
                 <h3 className="text-sm font-semibold uppercase tracking-wider mb-3">
                   Seller Information
                 </h3>
@@ -122,7 +122,7 @@ const SingleProduct = () => {
                     <p className="font-semibold">
                       {product.seller?.name || "Unknown Seller"}
                     </p>
-                    <p className="text-sm text-black/60 dark:text-white/60">
+                    <p className="text-sm text-black/60 :text-white/60">
                       {product.seller?.email || ""}
                     </p>
                   </div>
@@ -135,7 +135,7 @@ const SingleProduct = () => {
                   href={`https://wa.me/${product.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 flex items-center justify-center rounded-lg bg-neutral-100 text-black font-bold hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+                  className="w-full h-12 flex items-center justify-center rounded-lg bg-neutral-100 text-black font-bold hover:bg-primary/20 :hover:bg-primary/30 transition-colors"
                 >
                   Chat on Whatsapp
                 </a>

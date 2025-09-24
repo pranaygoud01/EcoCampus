@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center dark:bg-gray-900 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center :bg-gray-900 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md">
         {/* Logo + Title */}
         <div className="flex justify-center flex-col items-center mb-8">
@@ -54,13 +54,13 @@ const Login = () => {
           >
             <img src={logo} className="h-[50px] max-lg:h-[40px] w-auto" />
           </Link>
-          <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
+          <p className="text-gray-500 :text-gray-400 mt-2 text-sm sm:text-base">
             Your one-stop shop for campus essentials.
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg">
+        <div className="bg-white :bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg">
           <h2 className="text-center text-lg sm:text-xl font-semibold text-black mb-6">
             Login
           </h2>
@@ -70,7 +70,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-600 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-600 :text-gray-300"
               >
                 Email address
               </label>
@@ -81,11 +81,11 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                           rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 
+                className="mt-1 w-full px-3 py-2 border border-gray-300 :border-gray-600 
+                           rounded-md shadow-sm placeholder-gray-400 :placeholder-gray-500 
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 
-                           text-sm sm:text-base bg-white dark:bg-gray-700 
-                           text-gray-900 dark:text-white"
+                           text-sm sm:text-base bg-white :bg-gray-700 
+                           text-gray-900 :text-white"
                 placeholder="you@example.com"
               />
             </div>
@@ -94,7 +94,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-600 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-600 :text-gray-300"
               >
                 Password
               </label>
@@ -105,11 +105,11 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                           rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 
+                className="mt-1 w-full px-3 py-2 border border-gray-300 :border-gray-600 
+                           rounded-md shadow-sm placeholder-gray-400 :placeholder-gray-500 
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 
-                           text-sm sm:text-base bg-white dark:bg-gray-700 
-                           text-gray-900 dark:text-white"
+                           text-sm sm:text-base bg-white :bg-gray-700 
+                           text-gray-900 :text-white"
                 placeholder="••••••••"
               />
             </div>
@@ -145,7 +145,7 @@ const Login = () => {
 
         {/* Terms */}
         <div className="mt-6 text-center px-4">
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-500 :text-gray-400 leading-relaxed">
             By continuing, you agree to our{" "}
             <button
               type="button"

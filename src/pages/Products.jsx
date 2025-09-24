@@ -32,18 +32,18 @@ const Products = () => {
 
   // Skeleton Loader
   const SkeletonCard = () => (
-    <div className="group relative flex flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm animate-pulse">
-      <div className="aspect-square w-full bg-gray-200 dark:bg-gray-700"></div>
+    <div className="group relative flex flex-col overflow-hidden rounded-lg bg-white :bg-gray-800 shadow-sm animate-pulse">
+      <div className="aspect-square w-full bg-gray-200 :bg-gray-700"></div>
       <div className="flex flex-1 flex-col p-3 space-y-2">
-        <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-        <div className="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded"></div>
-        <div className="h-3 w-1/2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-4 w-3/4 bg-gray-200 :bg-gray-700 rounded"></div>
+        <div className="h-3 w-full bg-gray-200 :bg-gray-700 rounded"></div>
+        <div className="h-3 w-1/2 bg-gray-200 :bg-gray-700 rounded"></div>
       </div>
     </div>
   );
 
   return (
-    <div className="bg-white dark:bg-gray-900 font-display min-h-screen flex flex-col">
+    <div className="bg-white :bg-gray-900 font-display min-h-screen flex flex-col">
       <main className="flex-1">
         <div className="mx-auto w-full px-4 py-8 sm:px-6 lg:px-20">
           <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
@@ -55,7 +55,7 @@ const Products = () => {
           </div>
 
           <div>
-            <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100 text-center sm:text-left">
+            <h2 className="mb-6 text-2xl font-bold text-gray-900 :text-gray-100 text-center sm:text-left">
               Featured Items
             </h2>
 
@@ -68,17 +68,17 @@ const Products = () => {
                     <Link
                       to={`/browse/product/${product._id}`}
                       key={product._id}
-                      className="group relative flex flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300"
+                      className="group relative flex flex-col overflow-hidden rounded-lg bg-white :bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
                       <div
                         className="aspect-square w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
                         style={{ backgroundImage: `url(${product.image})` }}
                       ></div>
                       <div className="flex flex-1 flex-col p-3">
-                        <h3 className="font-medium text-gray-900 dark:text-gray-100">
+                        <h3 className="font-medium text-gray-900 :text-gray-100">
                           {product.name}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-gray-500 :text-gray-400">
                           {product.description}
                         </p>
                         <p className="mt-2 text-lg font-semibold text-black">

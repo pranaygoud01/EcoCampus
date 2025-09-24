@@ -12,9 +12,9 @@ const Popup = ({ isOpen, onClose, title, children }) => {
       ></div>
 
       {/* Popup Content */}
-      <div className="relative bg-white dark:bg-neutral-900 max-lg:w-11/12 rounded-2xl shadow-lg max-w-lg w-full p-6 z-10">
+      <div className="relative bg-white :bg-neutral-900 max-lg:w-11/12 rounded-2xl shadow-lg max-w-lg w-full p-6 z-10">
         <h2 className="text-lg font-semibold mb-4">{title}</h2>
-        <div className="text-sm text-gray-700 dark:text-gray-300 mb-6 max-h-[60vh] overflow-y-auto">
+        <div className="text-sm text-gray-700 :text-gray-300 mb-6 max-h-[60vh] overflow-y-auto">
           {children}
         </div>
         <button
