@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import book from "../assets/books.png"
-import store from "../assets/store.png"
-import all from "../assets/all.png"
-import instrument from "../assets/instrument.png"
-import coat from "../assets/lab-coat.png"
-import menu from "../assets/menu.png"
+import book from "../assets/books.png";
+import store from "../assets/store.png";
+import all from "../assets/all.png";
+import instrument from "../assets/instrument.png";
+import coat from "../assets/lab-coat.png";
+import menu from "../assets/menu.png";
 const Products = () => {
   const campusId = localStorage.getItem("campusId");
   const [products, setProducts] = useState([]);
@@ -17,10 +17,10 @@ const Products = () => {
 
   const categories = [
     { name: "All", image: all },
-    { name: "Books", image:book },
+    { name: "Books", image: book },
     { name: "Gadgets", image: store },
     { name: "Lab Coats", image: coat },
-    { name: "Instruments", image:instrument },
+    { name: "Instruments", image: instrument },
     { name: "Others", image: menu },
   ];
 
@@ -29,7 +29,9 @@ const Products = () => {
 
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/products/campus/${campusId}`);
+        const res = await axios.get(
+          `${baseUrl}/api/products/campus/${campusId}`
+        );
         setProducts(res.data); // assuming API returns an array
       } catch (err) {
         console.error(err);
@@ -71,7 +73,9 @@ const Products = () => {
         <div className="mx-auto w-full px-4 py-6 sm:px-6 lg:px-20">
           {/* Campus Heading */}
           <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-            <h1 className="font-semibold text-lg text-neutral-900">🎓 {campus}</h1>
+            <h1 className="font-semibold text-lg text-neutral-900">
+              🎓 {campus}
+            </h1>
 
             {/* Search Bar */}
             <input
@@ -83,54 +87,65 @@ const Products = () => {
             />
           </div>
 
+          
           {/* Categories Bar */}
-          <div className="flex gap-4 overflow-x-auto pb-4 mb-6">
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6">
             {categories.map((cat) => (
               <button
                 key={cat.name}
                 onClick={() => setSelectedCategory(cat.name)}
                 className={`flex flex-col items-center min-w-20 flex-shrink-0 px-3 py-2 rounded-lg border transition ${
                   selectedCategory === cat.name
-                    ? "bg-blue-100 border-blue-500"
-                    : "bg-white border-gray-200"
+                    ? "bg-neutral-100 border-neutral-200"
+                    : "bg-white border-neutral-200"
                 }`}
               >
-                <img src={cat.image} alt={cat.name} className="h-10 w-10 object-contain" />
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="h-10 w-10 object-contain"
+                />
                 <span className="text-sm font-medium mt-1">{cat.name}</span>
               </button>
             ))}
           </div>
 
           {/* Products */}
-          <h2 className="mb-6 text-2xl font-bold text-gray-900">Featured Items</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">
+            Featured Items
+          </h2>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:gap-6">
-            {loading
-              ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
-              : filteredProducts.length > 0
-              ? filteredProducts.map((product) => (
-                  <Link
-                    to={`/browse/product/${product._id}`}
-                    key={product._id}
-                    className="group relative flex flex-col overflow-hidden rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
-                  >
-                    <div
-                      className="aspect-square w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                      style={{ backgroundImage: `url(${product.image})` }}
-                    ></div>
-                    <div className="flex flex-1 flex-col p-3">
-                      <h3 className="font-medium max-lg:text-sm text-gray-900">{product.name}</h3>
-                      <p className="text-sm  max-lg:text-xs line-clamp-2 text-gray-500">{product.description}</p>
-                      <p className="mt-2 text-lg max-lg:text-sm font-semibold text-black">
-                        ₹{product.price}
-                      </p>
-                    </div>
-                  </Link>
-                ))
-              : (
-                <div className="text-center mt-10 col-span-full">
-                  No products found
-                </div>
-              )}
+            {loading ? (
+              Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
+            ) : filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <Link
+                  to={`/browse/product/${product._id}`}
+                  key={product._id}
+                  className="group relative flex flex-col overflow-hidden rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  <div
+                    className="aspect-square w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${product.image})` }}
+                  ></div>
+                  <div className="flex flex-1 flex-col p-3">
+                    <h3 className="font-medium max-lg:text-sm text-gray-900">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm  max-lg:text-xs line-clamp-2 text-gray-500">
+                      {product.description}
+                    </p>
+                    <p className="mt-2 text-lg max-lg:text-sm font-semibold text-black">
+                      ₹{product.price}
+                    </p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="text-center mt-10 col-span-full">
+                No products found
+              </div>
+            )}
           </div>
         </div>
       </main>

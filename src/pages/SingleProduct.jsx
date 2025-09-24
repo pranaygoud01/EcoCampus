@@ -79,7 +79,8 @@ const SingleProduct = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             {/* Hero Image */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 relative">
+             <h1 className="absolute top-5 left-5 text-xs font-semibold text-white bg-red-800 px-2 py-1 rounded-md">{product.campus?.name}</h1>
               <div
                 className="w-full  rounded-xl bg-cover bg-center  max-lg:h-[400px] h-[600px]"
                 style={{
