@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "@tanstack/react-router";
-
+import { BsBuildingAdd } from "react-icons/bs";
 const Colleges = () => {
   const [colleges, setColleges] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +28,10 @@ const Colleges = () => {
     localStorage.setItem("campusId", college._id);
     localStorage.setItem("campus", college.name);
     navigate({ to: `/browse/products` });
+  };
+
+  const handleRequestCollege = () => {
+    navigate({ to: "/contact" });
   };
 
   return (
@@ -80,6 +84,14 @@ const Colleges = () => {
                 ))}
           </div>
         </div>
+
+        {/* Request College Button */}
+        <button
+          onClick={handleRequestCollege}
+          className="mt-6 flex items-center gap-2 px-6 py-3 text-xs font-bold cursor-pointer bg-black text-white rounded-lg  transition-colors duration-300"
+        >
+          <BsBuildingAdd/>Request to Add Your College
+        </button>
       </div>
     </section>
   );

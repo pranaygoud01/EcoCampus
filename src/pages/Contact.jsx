@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,19 +15,35 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can send formData to your backend / email service
-    console.log("Submitted Data:", formData);
 
-    setStatus("Thank you! Your message has been received.");
-    setFormData({ name: "", email: "", category: "Feedback", message: "" });
+    try {
+      // Send data to Web3Forms
+      const response = await axios.post("https://api.web3forms.com/submit", {
+        access_key: "4a6cd21c-79e8-4155-8f37-da9c3fdbdce1", // replace with your Web3Forms access key
+        name: formData.name,
+        email: formData.email,
+        subject: formData.category, // use category as email subject
+        message: formData.message,
+        // You can also add more custom fields if needed
+      });
+
+      if (response.data.success) {
+        setStatus("Thank you! Your message has been received.");
+        setFormData({ name: "", email: "", category: "Feedback", message: "" });
+      } else {
+        setStatus("Oops! Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("Oops! Something went wrong. Please try again.");
+    }
   };
 
   return (
     <section className="w-full flex items-center justify-center px-6 md:px-20 py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12">
-        
         {/* LEFT - Contact Info */}
         <div className="flex flex-col justify-center">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -47,7 +64,6 @@ const Contact = () => {
         {/* RIGHT - Contact Form */}
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-gray-100">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            
             <div>
               <label className="block text-sm font-medium text-gray-700">Your Name</label>
               <input
@@ -74,7 +90,6 @@ const Contact = () => {
               />
             </div>
 
-            {/* Category Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Category</label>
               <select
@@ -85,7 +100,7 @@ const Contact = () => {
               >
                 <option>Feedback</option>
                 <option>Report a Bug</option>
-                <option>Business Inquiry</option>
+                <option>Request to add College name</option>
                 <option>Other</option>
               </select>
             </div>
