@@ -7,6 +7,8 @@ import all from "../assets/all.png";
 import instrument from "../assets/instrument.png";
 import coat from "../assets/lab-coat.png";
 import menu from "../assets/menu.png";
+import { IoSearch } from "react-icons/io5";
+
 const Products = () => {
   const campusId = localStorage.getItem("campusId");
   const [products, setProducts] = useState([]);
@@ -29,9 +31,7 @@ const Products = () => {
 
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(
-          `${baseUrl}/api/products/campus/${campusId}`
-        );
+        const res = await axios.get(`${baseUrl}/api/products/campus/${campusId}`);
         setProducts(res.data); // assuming API returns an array
       } catch (err) {
         console.error(err);
@@ -71,33 +71,35 @@ const Products = () => {
     <div className="bg-white min-h-screen flex flex-col">
       <main className="flex-1">
         <div className="mx-auto w-full px-4 py-6 sm:px-6 lg:px-20">
-          {/* Campus Heading */}
-          <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+
+          {/* Campus Heading + Search Bar (Sticky) */}
+          <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sticky top-7 z-20 bg-white py-2">
             <h1 className="font-semibold text-lg text-neutral-900">
               🎓 {campus}
             </h1>
 
-            {/* Search Bar */}
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full sm:w-64 border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none"
-            />
+            <div className="flex items-center max-lg:w-full gap-2 p-2 rounded-xl border border-neutral-300">
+              <IoSearch />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full sm:w-64 text-xs outline-0"
+              />
+            </div>
           </div>
 
-          
-          {/* Categories Bar */}
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6">
+          {/* Categories Bar (Sticky below search) */}
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6 sticky lg:top-22 top-30 z-10 bg-white">
             {categories.map((cat) => (
               <button
                 key={cat.name}
                 onClick={() => setSelectedCategory(cat.name)}
-                className={`flex flex-col items-center min-w-20 flex-shrink-0 px-3 py-2 rounded-lg border transition ${
+                className={`flex flex-col items-center min-w-20 cursor-pointer flex-shrink-0 px-3 py-2 rounded-lg transition ${
                   selectedCategory === cat.name
-                    ? "bg-neutral-100 border-neutral-200"
-                    : "bg-white border-neutral-200"
+                    ? "bg-neutral-100 text-black"
+                    : "bg-white text-neutral-500"
                 }`}
               >
                 <img
@@ -132,7 +134,7 @@ const Products = () => {
                     <h3 className="font-medium max-lg:text-sm text-gray-900">
                       {product.name}
                     </h3>
-                    <p className="text-sm  max-lg:text-xs line-clamp-2 text-gray-500">
+                    <p className="text-sm max-lg:text-xs line-clamp-2 text-gray-500">
                       {product.description}
                     </p>
                     <p className="mt-2 text-lg max-lg:text-sm font-semibold text-black">
