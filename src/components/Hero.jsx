@@ -26,26 +26,36 @@ const Hero = () => {
 
         <div className="flex gap-2 items-center mt-5">
           {token ? (
-            <Link
-              to="/sell"
-              className="font-semibold text-white bg-black border border-white/20 shadow hover:bg-black rounded-lg px-5 py-2 text-sm"
-            >
-              Start Selling
-            </Link>
+            <>
+              <Link
+                to="/sell"
+                className="font-semibold text-white bg-black border border-white/20 shadow hover:bg-black rounded-lg px-5 py-2 text-sm"
+              >
+                Start Selling
+              </Link>
+              <Link
+                to="/dashboard"
+                className="font-semibold text-black bg-white rounded-lg px-4 py-2 text-sm"
+              >
+                Dashboard
+              </Link>
+            </>
           ) : (
-            <Link
-              to="/register"
-              className="font-semibold text-white bg-black hover:bg-black rounded-lg px-5 py-2 text-sm"
-            >
-              Register
-            </Link>
+            <>
+              <Link
+                to="/register"
+                className="font-semibold text-white bg-black hover:bg-black rounded-lg px-5 py-2 text-sm"
+              >
+                Register
+              </Link>
+              <Link
+                to="/browse"
+                className="font-semibold text-black bg-white rounded-lg px-4 py-2 text-sm"
+              >
+                Browse Items
+              </Link>
+            </>
           )}
-          <Link
-            to="/browse"
-            className="font-semibold text-black bg-white rounded-lg px-4 py-2 text-sm"
-          >
-            Browse Items
-          </Link>
         </div>
       </div>
     </div>
