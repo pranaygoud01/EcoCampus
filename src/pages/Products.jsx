@@ -75,7 +75,7 @@ const Products = () => {
           {/* Campus Heading + Search Bar (Sticky) */}
           <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sticky top-7 z-20 bg-white py-2">
             <h1 className="font-semibold text-lg text-neutral-900">
-              🎓 {campus}
+               {campus}
             </h1>
 
             <div className="flex items-center max-lg:w-full gap-2 p-2 rounded-xl border border-neutral-300">

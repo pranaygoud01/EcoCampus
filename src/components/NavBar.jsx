@@ -11,8 +11,17 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const menu = ["Browse", "Sell", "About"];
+
+  const categories = [
+    { name: "All", path: "/browse" },
+    { name: "Books", path: "/browse/books" },
+    { name: "Gadgets", path: "/browse/gadgets" },
+    { name: "Lab Coats", path: "/browse/labcoats" },
+    { name: "Instruments", path: "/browse/instruments" },
+    { name: "Others", path: "/browse/others" },
+  ];
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,124 +38,143 @@ const NavBar = () => {
     }
   }, []);
 
- const handleLogout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  setIsAuthenticated(false);
-  setDropdownOpen(false);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsAuthenticated(false);
+    setDropdownOpen(false);
 
-  if (window.location.pathname === "/") {
-    // Already on home → reload
-    window.location.reload();
-  } else {
-    // Navigate to home
-    navigate({ to: "/" });
-  }
-};
-
+    if (window.location.pathname === "/") {
+      window.location.reload();
+    } else {
+      navigate({ to: "/" });
+    }
+  };
 
   return (
-    <div className="w-full px-6 md:px-20 py-4 sticky bg-white top-0 z-50 flex border-b border-b-neutral-200 justify-between items-center">
-      {/* Left Logo + Menu */}
-      <div className="flex items-center gap-5">
-        <Link
-          to="/"
-          className="font-bold text-black max-lg:text-lg text-xl flex items-center gap-1"
-        >
-          <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto" />
-        </Link>
+    <div className="w-full sticky top-0 z-50 bg-white shadow-sm">
+      {/* Main Navbar */}
+      <div className="px-6 md:px-20 py-4 flex border-b border-b-neutral-200 justify-between items-center">
+        {/* Left Logo + Menu */}
+        <div className="flex items-center gap-5">
+          <Link
+            to="/"
+            className="font-bold text-black max-lg:text-lg text-xl flex items-center gap-1"
+          >
+            <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto" />
+          </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex">
-          {menu.map((item) => {
-            const path =
-              item.toLowerCase() === "sell" && !isAuthenticated
-                ? "/login"
-                : `/${item.toLowerCase()}`;
+          {/* Desktop Menu */}
+          <div className="hidden md:flex">
+            {menu.map((item) => {
+              const path =
+                item.toLowerCase() === "sell" && !isAuthenticated
+                  ? "/login"
+                  : `/${item.toLowerCase()}`;
 
-            return (
-              <Link
-                key={item}
-                to={path}
-                className="px-2 font-semibold cursor-pointer text-neutral-500 text-xs"
-              >
-                {item}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Right Section */}
-      <div className="hidden md:flex items-center gap-5 relative">
-        <div className="w-[300px] border border-neutral-200 flex items-center px-2 py-1 rounded-xl">
-          <span>
-            <CiSearch />
-          </span>
-          <input
-            type="text"
-            className="px-2 py-1 outline-0 text-sm w-full"
-            placeholder="Search..."
-          />
-        </div>
-
-        {!isAuthenticated ? (
-          <div className="flex gap-2">
-            <Link
-              to="/login"
-              className="font-semibold text-black bg-neutral-100 rounded-lg px-4 py-2 text-xs"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="font-semibold text-white bg-black rounded-lg px-4 py-2 text-xs"
-            >
-              Register
-            </Link>
-          </div>
-        ) : (
-          <div className="relative">
-            <button
-              className="flex items-center gap-2"
-              onClick={() => setDropdownOpen((prev) => !prev)}
-            >
-              <span className="font-semibold text-xs text-neutral-700">
-                Hey, {userName}
-              </span>
-              <span className="flex items-center cursor-pointer gap-1">
-                <img src={profile} className="w-8 h-8 rounded-full" />
-                <IoIosArrowDown className="text-xs" />
-              </span>
-            </button>
-
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 font-semibold w-40 bg-white border border-neutral-200 rounded-lg shadow-lg p-2">
+              return (
                 <Link
-                  to="/dashboard"
-                  className="block px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 rounded"
-                  onClick={() => setDropdownOpen(false)}
+                  key={item}
+                  to={path}
+                  className="px-2 font-semibold cursor-pointer text-neutral-500 text-xs"
                 >
-                  Dashboard
+                  {item}
                 </Link>
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-left cursor-pointer px-4 py-2 text-xs text-red-600 hover:bg-neutral-100 rounded"
-                >
-                  Logout
-                </button>
-              </div>
-            )}
+              );
+            })}
           </div>
-        )}
+        </div>
+
+        {/* Right Section */}
+        <div className="hidden md:flex items-center gap-5 relative">
+          <div className="w-[300px] border border-neutral-200 flex items-center px-2 py-1 rounded-xl">
+            <span>
+              <CiSearch />
+            </span>
+            <input
+              type="text"
+              className="px-2 py-1 outline-0 text-sm w-full"
+              placeholder="Search..."
+            />
+          </div>
+
+          {!isAuthenticated ? (
+            <div className="flex gap-2">
+              <Link
+                to="/login"
+                className="font-semibold text-black bg-neutral-100 rounded-lg px-4 py-2 text-xs"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="font-semibold text-white bg-black rounded-lg px-4 py-2 text-xs"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            <div className="relative">
+              <button
+                className="flex items-center gap-2"
+                onClick={() => setDropdownOpen((prev) => !prev)}
+              >
+                <span className="font-semibold text-xs text-neutral-700">
+                  Hey, {userName}
+                </span>
+                <span className="flex items-center cursor-pointer gap-1">
+                  <img src={profile} className="w-8 h-8 rounded-full" />
+                  <IoIosArrowDown className="text-xs" />
+                </span>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 font-semibold w-40 bg-white border border-neutral-200 rounded-lg shadow-lg p-2">
+                  <Link
+                    to="/dashboard"
+                    className="block px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 rounded"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left cursor-pointer px-4 py-2 text-xs text-red-600 hover:bg-neutral-100 rounded"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Hamburger Menu (Mobile) */}
+        <div className="md:hidden flex items-center gap-2">
+          {isAuthenticated && (
+            <div>
+              <img src={profile} className="w-6 h-6 rounded-full" />
+            </div>
+          )}
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <IoClose size={25} /> : <IoMenuOutline size={25} />}
+          </button>
+        </div>
       </div>
 
-      {/* Hamburger Menu (Mobile) */}
-      <div className="md:hidden flex items-center gap-2">
-        {isAuthenticated&&<div><img src={profile} className="w-6 h-6 rounded-full" /></div>}
-        <button onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <IoClose size={25} /> : <IoMenuOutline size={25} />}
-        </button>
+      {/* Category Bar */}
+      <div className="w-full overflow-x-auto border-b border-neutral-200 bg-white">
+        <div className="flex gap-6 px-6 md:px-20 py-3 text-sm font-semibold text-neutral-600 whitespace-nowrap">
+          {categories.map((cat) => (
+            <Link
+              key={cat.name}
+              to={cat.path}
+              className="hover:text-black transition"
+            >
+              {cat.name}
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Mobile Dropdown */}
@@ -206,7 +234,6 @@ const NavBar = () => {
                 onClick={() => {
                   handleLogout();
                   setMenuOpen(false);
-                  
                 }}
                 className="text-left font-semibold text-red-600 text-sm  py-1 rounded hover:bg-neutral-100"
               >

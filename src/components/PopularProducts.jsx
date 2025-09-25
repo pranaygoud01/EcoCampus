@@ -24,12 +24,12 @@ const PopularProducts = () => {
 
   // Skeleton Loader
   const SkeletonCard = () => (
-    <div className="flex flex-col overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm min-w-[200px] animate-pulse">
-      <div className="aspect-square w-full bg-gray-200 dark:bg-gray-700"></div>
+    <div className="flex flex-col overflow-hidden rounded-lg bg-white :bg-gray-800 shadow-sm min-w-[200px] animate-pulse">
+      <div className="aspect-square w-full bg-gray-200 :bg-gray-700"></div>
       <div className="flex flex-col p-3 space-y-2">
-        <div className="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-        <div className="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded"></div>
-        <div className="h-3 w-1/2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        <div className="h-4 w-3/4 bg-gray-200 :bg-gray-700 rounded"></div>
+        <div className="h-3 w-full bg-gray-200 :bg-gray-700 rounded"></div>
+        <div className="h-3 w-1/2 bg-gray-200 :bg-gray-700 rounded"></div>
       </div>
     </div>
   );
@@ -54,7 +54,7 @@ const PopularProducts = () => {
               <Link
                 to={`/browse/product/${product._id}`}
                 key={product._id}
-                className="flex flex-col relative max-lg:w-[200px]  border border-neutral-300 w-[300px] overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300 min-w-[200px]"
+                className="flex flex-col relative max-lg:w-[200px]  border border-neutral-300 w-[300px] overflow-hidden rounded-lg bg-white :bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300 min-w-[200px]"
               >
                 <div
                   className="h-[300px] max-lg:h-[200px]  bg-cover bg-center transition-transform duration-300 hover:scale-105"
@@ -65,10 +65,10 @@ const PopularProducts = () => {
                 </p>
 
                 <div className="flex flex-col p-3">
-                  <h3 className="font-medium max-lg:text-sm text-gray-900 dark:text-gray-100 truncate">
+                  <h3 className="font-medium max-lg:text-sm text-gray-900 :text-gray-100 truncate">
                     {product.name}
                   </h3>
-                  <p className="text-sm max-lg:text-xs text-gray-500 dark:text-gray-400 line-clamp-2">
+                  <p className="text-sm max-lg:text-xs text-gray-500 :text-gray-400 line-clamp-2">
                     {product.description}
                   </p>
                   <p className="mt-2 text-lg max-lg:text-sm font-semibold text-black">
