@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseIndexRouteImport } from './routes/browse/index'
 import { Route as BrowseProductsRouteImport } from './routes/browse/products'
+import { Route as BrowseBooksRouteImport } from './routes/browse/books'
 import { Route as BrowseProductIdRouteImport } from './routes/browse/product/$id'
 
 const SellRoute = SellRouteImport.update({
@@ -65,6 +66,11 @@ const BrowseProductsRoute = BrowseProductsRouteImport.update({
   path: '/browse/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrowseBooksRoute = BrowseBooksRouteImport.update({
+  id: '/browse/books',
+  path: '/browse/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrowseProductIdRoute = BrowseProductIdRouteImport.update({
   id: '/browse/product/$id',
   path: '/browse/product/$id',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
+  '/browse/books': typeof BrowseBooksRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
+  '/browse/books': typeof BrowseBooksRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
+  '/browse/books': typeof BrowseBooksRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse/': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
+    | '/browse/books'
     | '/browse/products'
     | '/browse'
     | '/browse/product/$id'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
+    | '/browse/books'
     | '/browse/products'
     | '/browse'
     | '/browse/product/$id'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/sell'
+    | '/browse/books'
     | '/browse/products'
     | '/browse/'
     | '/browse/product/$id'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
+  BrowseBooksRoute: typeof BrowseBooksRoute
   BrowseProductsRoute: typeof BrowseProductsRoute
   BrowseIndexRoute: typeof BrowseIndexRoute
   BrowseProductIdRoute: typeof BrowseProductIdRoute
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/browse/books': {
+      id: '/browse/books'
+      path: '/browse/books'
+      fullPath: '/browse/books'
+      preLoaderRoute: typeof BrowseBooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/browse/product/$id': {
       id: '/browse/product/$id'
       path: '/browse/product/$id'
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
+  BrowseBooksRoute: BrowseBooksRoute,
   BrowseProductsRoute: BrowseProductsRoute,
   BrowseIndexRoute: BrowseIndexRoute,
   BrowseProductIdRoute: BrowseProductIdRoute,
