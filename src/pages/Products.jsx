@@ -32,7 +32,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(`${baseUrl}/api/products/campus/${campusId}`);
-        setProducts(res.data); // assuming API returns an array
+        setProducts(res.data.reverse()); // assuming API returns an array
       } catch (err) {
         console.error(err);
       } finally {

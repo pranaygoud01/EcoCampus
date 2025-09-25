@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import CategoryProducts from '../../pages/category/Products'
 
-export const Route = createFileRoute('/browse/books')({
+export const Route = createFileRoute('/browse/gadgets')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <CategoryProducts category="Books"/>
+  return <CategoryProducts category="Gadgets"/>
 }

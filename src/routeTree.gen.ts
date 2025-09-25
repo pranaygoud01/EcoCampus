@@ -18,6 +18,10 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseIndexRouteImport } from './routes/browse/index'
 import { Route as BrowseProductsRouteImport } from './routes/browse/products'
+import { Route as BrowseOthersRouteImport } from './routes/browse/others'
+import { Route as BrowseLabcoatsRouteImport } from './routes/browse/labcoats'
+import { Route as BrowseInstrumentsRouteImport } from './routes/browse/instruments'
+import { Route as BrowseGadgetsRouteImport } from './routes/browse/gadgets'
 import { Route as BrowseBooksRouteImport } from './routes/browse/books'
 import { Route as BrowseProductIdRouteImport } from './routes/browse/product/$id'
 
@@ -66,6 +70,26 @@ const BrowseProductsRoute = BrowseProductsRouteImport.update({
   path: '/browse/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrowseOthersRoute = BrowseOthersRouteImport.update({
+  id: '/browse/others',
+  path: '/browse/others',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseLabcoatsRoute = BrowseLabcoatsRouteImport.update({
+  id: '/browse/labcoats',
+  path: '/browse/labcoats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseInstrumentsRoute = BrowseInstrumentsRouteImport.update({
+  id: '/browse/instruments',
+  path: '/browse/instruments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseGadgetsRoute = BrowseGadgetsRouteImport.update({
+  id: '/browse/gadgets',
+  path: '/browse/gadgets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrowseBooksRoute = BrowseBooksRouteImport.update({
   id: '/browse/books',
   path: '/browse/books',
@@ -86,6 +110,10 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
+  '/browse/gadgets': typeof BrowseGadgetsRoute
+  '/browse/instruments': typeof BrowseInstrumentsRoute
+  '/browse/labcoats': typeof BrowseLabcoatsRoute
+  '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -99,6 +127,10 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
+  '/browse/gadgets': typeof BrowseGadgetsRoute
+  '/browse/instruments': typeof BrowseInstrumentsRoute
+  '/browse/labcoats': typeof BrowseLabcoatsRoute
+  '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -113,6 +145,10 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
+  '/browse/gadgets': typeof BrowseGadgetsRoute
+  '/browse/instruments': typeof BrowseInstrumentsRoute
+  '/browse/labcoats': typeof BrowseLabcoatsRoute
+  '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
   '/browse/': typeof BrowseIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
@@ -128,6 +164,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/browse/books'
+    | '/browse/gadgets'
+    | '/browse/instruments'
+    | '/browse/labcoats'
+    | '/browse/others'
     | '/browse/products'
     | '/browse'
     | '/browse/product/$id'
@@ -141,6 +181,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/browse/books'
+    | '/browse/gadgets'
+    | '/browse/instruments'
+    | '/browse/labcoats'
+    | '/browse/others'
     | '/browse/products'
     | '/browse'
     | '/browse/product/$id'
@@ -154,6 +198,10 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/browse/books'
+    | '/browse/gadgets'
+    | '/browse/instruments'
+    | '/browse/labcoats'
+    | '/browse/others'
     | '/browse/products'
     | '/browse/'
     | '/browse/product/$id'
@@ -168,6 +216,10 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
   BrowseBooksRoute: typeof BrowseBooksRoute
+  BrowseGadgetsRoute: typeof BrowseGadgetsRoute
+  BrowseInstrumentsRoute: typeof BrowseInstrumentsRoute
+  BrowseLabcoatsRoute: typeof BrowseLabcoatsRoute
+  BrowseOthersRoute: typeof BrowseOthersRoute
   BrowseProductsRoute: typeof BrowseProductsRoute
   BrowseIndexRoute: typeof BrowseIndexRoute
   BrowseProductIdRoute: typeof BrowseProductIdRoute
@@ -238,6 +290,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/browse/others': {
+      id: '/browse/others'
+      path: '/browse/others'
+      fullPath: '/browse/others'
+      preLoaderRoute: typeof BrowseOthersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/labcoats': {
+      id: '/browse/labcoats'
+      path: '/browse/labcoats'
+      fullPath: '/browse/labcoats'
+      preLoaderRoute: typeof BrowseLabcoatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/instruments': {
+      id: '/browse/instruments'
+      path: '/browse/instruments'
+      fullPath: '/browse/instruments'
+      preLoaderRoute: typeof BrowseInstrumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/gadgets': {
+      id: '/browse/gadgets'
+      path: '/browse/gadgets'
+      fullPath: '/browse/gadgets'
+      preLoaderRoute: typeof BrowseGadgetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/browse/books': {
       id: '/browse/books'
       path: '/browse/books'
@@ -264,6 +344,10 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
   BrowseBooksRoute: BrowseBooksRoute,
+  BrowseGadgetsRoute: BrowseGadgetsRoute,
+  BrowseInstrumentsRoute: BrowseInstrumentsRoute,
+  BrowseLabcoatsRoute: BrowseLabcoatsRoute,
+  BrowseOthersRoute: BrowseOthersRoute,
   BrowseProductsRoute: BrowseProductsRoute,
   BrowseIndexRoute: BrowseIndexRoute,
   BrowseProductIdRoute: BrowseProductIdRoute,

@@ -11,7 +11,8 @@ const PopularProducts = () => {
     const fetchPopular = async () => {
       try {
         const res = await axios.get(`${baseUrl}/api/products`);
-        setProducts(res.data.slice(0, 7)); // first 7 products
+       setProducts(res.data.reverse().slice(0, 7));
+ // first 7 products
       } catch (err) {
         console.error(err);
       } finally {
@@ -60,7 +61,7 @@ const PopularProducts = () => {
                   className="h-[300px] max-lg:h-[200px]  bg-cover bg-center transition-transform duration-300 hover:scale-105"
                   style={{ backgroundImage: `url(${product.image})` }}
                 ></div>
-                <p className="absolute top-3 font-semibold text-xs max-lg:text-[9px] bg-red-900 rounded-md text-white px-2 py-1 left-3">
+                <p className="absolute top-3 font-semibold text-xs max-lg:text-[9px] bg-black rounded-md text-white px-2 py-1 left-3">
                   {product?.campus?.name}
                 </p>
 
