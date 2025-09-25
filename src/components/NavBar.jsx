@@ -250,7 +250,7 @@ const NavBar = () => {
           ) : (
             <div className="flex flex-col gap-3 border-t border-neutral-200 pt-3">
               <div className="flex items-center gap-2">
-                <img src={profile} className="w-8 h-8 rounded-full" />
+                <img src={userAvatar || ("https://ui-avatars.com/api/?name=" + encodeURIComponent(userName))} className="w-8 h-8 rounded-full" />
                 <span className="font-semibold text-sm text-neutral-700">
                   Hi, {userName}
                 </span>
