@@ -31,7 +31,7 @@ const Categories = () => {
 
   return (
     <section className=":bg-background- w-full bg-white py-10 md:py-14">
-      <div className="container mx-auto w-full px-5 sm:px-6 lg:px-0">
+      <div className="container mx-auto w-full px-5 sm:px-6 lg:px-20">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Browse by Category</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((card) => (
