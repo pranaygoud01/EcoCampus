@@ -18,6 +18,7 @@ const NavBar = () => {
   const menu = ["Browse", "Sell", "About"];
 
   const categories = [
+    { name: "Home", path: "/" },
     { name: "Browse", path: "/browse" },
     { name: "Books", path: "/browse/books" },
     { name: "Gadgets", path: "/browse/gadgets" },

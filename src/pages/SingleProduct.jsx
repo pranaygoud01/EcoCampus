@@ -66,7 +66,7 @@ const SingleProduct = () => {
 
   return (
     <div className="font-display bg-background-light :bg-background- text-[#0D141B] :text-background-light min-h-screen flex flex-col">
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-8 flex-1">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <div className="mb-6 text-sm font-medium text-black/60 :text-white/60">
