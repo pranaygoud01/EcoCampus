@@ -19,6 +19,8 @@ const Sell = () => {
 
   const baseUrl = import.meta.env.VITE_API_URL;
 
+  // Route-level guard now handles unauthenticated toast/redirect
+
   // Fetch campuses
   useEffect(() => {
     const fetchCampuses = async () => {

@@ -97,10 +97,15 @@ const Browse = () => {
                 {suggestions.map((campus) => (
                   <li
                     key={campus._id}
-                    className="px-4 py-2 hover:bg-neutral-100 cursor-pointer"
+                    className="px-3 py-2 hover:bg-neutral-100 cursor-pointer flex items-center gap-3"
                     onClick={() => handleSelectCampus(campus)}
                   >
-                    {campus.name}
+                    <img
+                      src={campus.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(campus.name)}`}
+                      referrerPolicy="no-referrer"
+                      className="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span>{campus.name}</span>
                   </li>
                 ))}
               </ul>
@@ -126,12 +131,17 @@ const Browse = () => {
                   popularCampuses.map((campus) => (
                     <button
                       key={campus._id}
-                      className={`campus-button flex items-center justify-center p-3 border border-neutral-200 rounded-lg bg-background ${
+                      className={`campus-button flex items-center gap-2 justify-start p-2 border border-neutral-200 rounded-lg bg-background ${
                         selectedCampus?._id === campus._id ? "selected" : ""
                       }`}
                       onClick={() => handleSelectCampus(campus)}
                     >
-                      <span className="font-medium max-lg:text-xs text-sm">
+                      <img
+                        src={campus.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(campus.name)}`}
+                        referrerPolicy="no-referrer"
+                        className="w-7 h-7 rounded-full object-cover"
+                      />
+                      <span className="font-medium max-lg:text-xs text-sm text-left">
                         {campus.name}
                       </span>
                     </button>

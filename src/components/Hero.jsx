@@ -43,16 +43,16 @@ const Hero = () => {
           ) : (
             <>
               <Link
-                to="/register"
+                to="/sell-project"
                 className="font-semibold text-white bg-black hover:bg-black rounded-lg max-lg:text-xs px-5 py-2 text-sm"
               >
-                Register
+                Sell Project
               </Link>
               <Link
                 to="/browse"
                 className="font-semibold text-black bg-white rounded-lg px-4 py-2 max-lg:text-xs text-sm"
               >
-                Browse Items
+                Browse Products
               </Link>
             </>
           )}

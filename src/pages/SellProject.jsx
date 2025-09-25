@@ -20,14 +20,7 @@ const SellProject = () => {
 
   const baseUrl = import.meta.env.VITE_API_URL;
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    if (!token || !user) {
-      toast.error("Please sign in to sell a project.");
-      window.location.href = "/";
-    }
-  }, []);
+  // Route-level guard handles unauthenticated toast/redirect
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
