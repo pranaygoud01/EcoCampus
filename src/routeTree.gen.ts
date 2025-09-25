@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SellProjectRouteImport } from './routes/sell-project'
 import { Route as SellRouteImport } from './routes/sell'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -23,6 +24,11 @@ import { Route as BrowseGadgetsRouteImport } from './routes/browse/gadgets'
 import { Route as BrowseBooksRouteImport } from './routes/browse/books'
 import { Route as BrowseProductIdRouteImport } from './routes/browse/product/$id'
 
+const SellProjectRoute = SellProjectRouteImport.update({
+  id: '/sell-project',
+  path: '/sell-project',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SellRoute = SellRouteImport.update({
   id: '/sell',
   path: '/sell',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/sell': typeof SellRoute
+  '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
   '/browse/instruments': typeof BrowseInstrumentsRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/sell': typeof SellRoute
+  '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
   '/browse/instruments': typeof BrowseInstrumentsRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/sell': typeof SellRoute
+  '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
   '/browse/instruments': typeof BrowseInstrumentsRoute
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/sell'
+    | '/sell-project'
     | '/browse/books'
     | '/browse/gadgets'
     | '/browse/instruments'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/sell'
+    | '/sell-project'
     | '/browse/books'
     | '/browse/gadgets'
     | '/browse/instruments'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboard'
     | '/sell'
+    | '/sell-project'
     | '/browse/books'
     | '/browse/gadgets'
     | '/browse/instruments'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   SellRoute: typeof SellRoute
+  SellProjectRoute: typeof SellProjectRoute
   BrowseBooksRoute: typeof BrowseBooksRoute
   BrowseGadgetsRoute: typeof BrowseGadgetsRoute
   BrowseInstrumentsRoute: typeof BrowseInstrumentsRoute
@@ -201,6 +214,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sell-project': {
+      id: '/sell-project'
+      path: '/sell-project'
+      fullPath: '/sell-project'
+      preLoaderRoute: typeof SellProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sell': {
       id: '/sell'
       path: '/sell'
@@ -301,6 +321,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   SellRoute: SellRoute,
+  SellProjectRoute: SellProjectRoute,
   BrowseBooksRoute: BrowseBooksRoute,
   BrowseGadgetsRoute: BrowseGadgetsRoute,
   BrowseInstrumentsRoute: BrowseInstrumentsRoute,
