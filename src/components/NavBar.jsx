@@ -4,12 +4,14 @@ import { CiSearch } from "react-icons/ci";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import logo from "../assets/logo.png";
-import profile from "../assets/profile.jpg";
+
+import { useGoogleLogin } from "@react-oauth/google";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const router = useRouter();
@@ -36,11 +38,14 @@ const NavBar = () => {
       try {
         const parsedUser = JSON.parse(user);
         setUserName(parsedUser.name || "User");
+        setUserAvatar(parsedUser.avatar || "");
       } catch (error) {
         console.error("Invalid user data in localStorage");
       }
     }
   }, []);
+
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -54,6 +59,33 @@ const NavBar = () => {
       navigate({ to: "/" });
     }
   };
+
+  const onGoogleSuccess = async (tokenResponse) => {
+    try {
+      const res = await fetch(`${baseUrl}/api/auth/google`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accessToken: tokenResponse.access_token }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.msg || "Google login failed");
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setIsAuthenticated(true);
+      setUserName(data.user?.name || "User");
+      setUserAvatar(data.user?.avatar || "");
+      if (currentPath.toLowerCase() === "/sell") {
+        navigate({ to: "/sell" });
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: onGoogleSuccess,
+    onError: () => alert("Google login failed. Try again."),
+    scope: "openid email profile",
+  });
 
   return (
     <div className="w-full sticky top-0 z-50 bg-white ">
@@ -71,10 +103,7 @@ const NavBar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex">
             {menu.map((item) => {
-              const path =
-                item.toLowerCase() === "sell" && !isAuthenticated
-                  ? "/login"
-                  : `/${item.toLowerCase()}`;
+              const path = `/${item.toLowerCase()}`;
 
               return (
                 <Link
@@ -104,18 +133,18 @@ const NavBar = () => {
 
           {!isAuthenticated ? (
             <div className="flex gap-2">
-              <Link
-                to="/login"
-                className="font-semibold text-black bg-neutral-100 rounded-lg px-4 py-2 text-xs"
+              <button
+                onClick={() => loginWithGoogle()}
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-neutral-900"
               >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="font-semibold text-white bg-black rounded-lg px-4 py-2 text-xs"
-              >
-                Register
-              </Link>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="w-4 h-4">
+                  <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12 s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C33.412,6.053,28.965,4,24,4C12.955,4,4,12.955,4,24 s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                  <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,16.108,19.004,13,24,13c3.059,0,5.842,1.154,7.961,3.039 l5.657-5.657C33.412,6.053,28.965,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                  <path fill="#4CAF50" d="M24,44c4.874,0,9.292-1.851,12.625-4.868l-5.844-4.936C28.711,35.524,26.486,36,24,36 c-5.202,0-9.617-3.322-11.278-7.955l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                  <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-3.978,5.612 c0.001-0.001,0.002-0.001,0.003-0.002l5.844,4.936C36.947,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+                </svg>
+                <span>Sign in with Google</span>
+              </button>
             </div>
           ) : (
             <div className="relative">
@@ -127,7 +156,7 @@ const NavBar = () => {
                   Hey, {userName}
                 </span>
                 <span className="flex items-center cursor-pointer gap-1">
-                  <img src={profile} className="w-8 h-8 rounded-full" />
+                  <img src={userAvatar || ("https://ui-avatars.com/api/?name=" + encodeURIComponent(userName))} referrerPolicy="no-referrer" className="w-8 h-8 rounded-full" />
                   <IoIosArrowDown className="text-xs" />
                 </span>
               </button>
@@ -157,7 +186,7 @@ const NavBar = () => {
         <div className="md:hidden flex items-center gap-2">
           {isAuthenticated && (
             <div>
-              <img src={profile} className="w-6 h-6 rounded-full" />
+              <img src={userAvatar || ("https://ui-avatars.com/api/?name=" + encodeURIComponent(userName))} referrerPolicy="no-referrer" className="w-6 h-6 rounded-full" />
             </div>
           )}
           <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -194,10 +223,7 @@ const NavBar = () => {
       {menuOpen && (
         <div className="absolute top-15 right-2 rounded-xl w-7/12 h-fit bg-white border-t border-neutral-200 flex flex-col gap-4 p-5 md:hidden shadow-lg">
           {menu.map((item) => {
-            const path =
-              item.toLowerCase() === "sell" && !isAuthenticated
-                ? "/login"
-                : `/${item.toLowerCase()}`;
+            const path = `/${item.toLowerCase()}`;
 
             return (
               <Link
@@ -213,20 +239,12 @@ const NavBar = () => {
 
           {!isAuthenticated ? (
             <div className="flex flex-col gap-2">
-              <Link
-                to="/login"
-                className="font-semibold text-center text-black bg-neutral-100 rounded-lg px-4 py-2 text-sm"
-                onClick={() => setMenuOpen(false)}
+              <button
+                onClick={() => loginWithGoogle()}
+                className="w-full text-center font-semibold text-white bg-black rounded-lg px-4 py-2 text-sm"
               >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="font-semibold text-white text-center bg-black rounded-lg px-4 py-2 text-sm"
-                onClick={() => setMenuOpen(false)}
-              >
-                Register
-              </Link>
+                Continue with Google
+              </button>
             </div>
           ) : (
             <div className="flex flex-col gap-3 border-t border-neutral-200 pt-3">

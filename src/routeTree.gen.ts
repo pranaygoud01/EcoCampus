@@ -10,8 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SellRouteImport } from './routes/sell'
-import { Route as RegisterRouteImport } from './routes/register'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -28,16 +26,6 @@ import { Route as BrowseProductIdRouteImport } from './routes/browse/product/$id
 const SellRoute = SellRouteImport.update({
   id: '/sell',
   path: '/sell',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RegisterRoute = RegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -106,8 +94,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
@@ -123,8 +109,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
@@ -141,8 +125,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/browse/books': typeof BrowseBooksRoute
   '/browse/gadgets': typeof BrowseGadgetsRoute
@@ -160,8 +142,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
-    | '/login'
-    | '/register'
     | '/sell'
     | '/browse/books'
     | '/browse/gadgets'
@@ -177,8 +157,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
-    | '/login'
-    | '/register'
     | '/sell'
     | '/browse/books'
     | '/browse/gadgets'
@@ -194,8 +172,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
-    | '/login'
-    | '/register'
     | '/sell'
     | '/browse/books'
     | '/browse/gadgets'
@@ -212,8 +188,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
-  LoginRoute: typeof LoginRoute
-  RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
   BrowseBooksRoute: typeof BrowseBooksRoute
   BrowseGadgetsRoute: typeof BrowseGadgetsRoute
@@ -232,20 +206,6 @@ declare module '@tanstack/react-router' {
       path: '/sell'
       fullPath: '/sell'
       preLoaderRoute: typeof SellRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/register': {
-      id: '/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof RegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -340,8 +300,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
-  LoginRoute: LoginRoute,
-  RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
   BrowseBooksRoute: BrowseBooksRoute,
   BrowseGadgetsRoute: BrowseGadgetsRoute,
