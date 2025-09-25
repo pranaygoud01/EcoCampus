@@ -15,7 +15,9 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as BrowseIndexRouteImport } from './routes/browse/index'
+import { Route as ProjectsIdRouteImport } from './routes/projects/$id'
 import { Route as BrowseProductsRouteImport } from './routes/browse/products'
 import { Route as BrowseOthersRouteImport } from './routes/browse/others'
 import { Route as BrowseLabcoatsRouteImport } from './routes/browse/labcoats'
@@ -54,9 +56,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrowseIndexRoute = BrowseIndexRouteImport.update({
   id: '/browse/',
   path: '/browse/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIdRoute = ProjectsIdRouteImport.update({
+  id: '/projects/$id',
+  path: '/projects/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrowseProductsRoute = BrowseProductsRouteImport.update({
@@ -108,7 +120,9 @@ export interface FileRoutesByFullPath {
   '/browse/labcoats': typeof BrowseLabcoatsRoute
   '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
+  '/projects/$id': typeof ProjectsIdRoute
   '/browse': typeof BrowseIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRoutesByTo {
@@ -124,7 +138,9 @@ export interface FileRoutesByTo {
   '/browse/labcoats': typeof BrowseLabcoatsRoute
   '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
+  '/projects/$id': typeof ProjectsIdRoute
   '/browse': typeof BrowseIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRoutesById {
@@ -141,7 +157,9 @@ export interface FileRoutesById {
   '/browse/labcoats': typeof BrowseLabcoatsRoute
   '/browse/others': typeof BrowseOthersRoute
   '/browse/products': typeof BrowseProductsRoute
+  '/projects/$id': typeof ProjectsIdRoute
   '/browse/': typeof BrowseIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/browse/product/$id': typeof BrowseProductIdRoute
 }
 export interface FileRouteTypes {
@@ -159,7 +177,9 @@ export interface FileRouteTypes {
     | '/browse/labcoats'
     | '/browse/others'
     | '/browse/products'
+    | '/projects/$id'
     | '/browse'
+    | '/projects'
     | '/browse/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -175,7 +195,9 @@ export interface FileRouteTypes {
     | '/browse/labcoats'
     | '/browse/others'
     | '/browse/products'
+    | '/projects/$id'
     | '/browse'
+    | '/projects'
     | '/browse/product/$id'
   id:
     | '__root__'
@@ -191,7 +213,9 @@ export interface FileRouteTypes {
     | '/browse/labcoats'
     | '/browse/others'
     | '/browse/products'
+    | '/projects/$id'
     | '/browse/'
+    | '/projects/'
     | '/browse/product/$id'
   fileRoutesById: FileRoutesById
 }
@@ -208,7 +232,9 @@ export interface RootRouteChildren {
   BrowseLabcoatsRoute: typeof BrowseLabcoatsRoute
   BrowseOthersRoute: typeof BrowseOthersRoute
   BrowseProductsRoute: typeof BrowseProductsRoute
+  ProjectsIdRoute: typeof ProjectsIdRoute
   BrowseIndexRoute: typeof BrowseIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
   BrowseProductIdRoute: typeof BrowseProductIdRoute
 }
 
@@ -256,11 +282,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/browse/': {
       id: '/browse/'
       path: '/browse'
       fullPath: '/browse'
       preLoaderRoute: typeof BrowseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$id': {
+      id: '/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/projects/$id'
+      preLoaderRoute: typeof ProjectsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/browse/products': {
@@ -328,7 +368,9 @@ const rootRouteChildren: RootRouteChildren = {
   BrowseLabcoatsRoute: BrowseLabcoatsRoute,
   BrowseOthersRoute: BrowseOthersRoute,
   BrowseProductsRoute: BrowseProductsRoute,
+  ProjectsIdRoute: ProjectsIdRoute,
   BrowseIndexRoute: BrowseIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
   BrowseProductIdRoute: BrowseProductIdRoute,
 }
 export const routeTree = rootRouteImport
