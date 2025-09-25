@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
@@ -12,10 +12,13 @@ const NavBar = () => {
   const [userName, setUserName] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const router = useRouter();
+  const currentPath = router.state.location.pathname;
+
   const menu = ["Browse", "Sell", "About"];
 
   const categories = [
-    { name: "All", path: "/browse" },
+    { name: "Browse", path: "/browse" },
     { name: "Books", path: "/browse/books" },
     { name: "Gadgets", path: "/browse/gadgets" },
     { name: "Lab Coats", path: "/browse/labcoats" },
@@ -52,7 +55,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="w-full sticky top-0 z-50 bg-white shadow-sm">
+    <div className="w-full sticky top-0 z-50 bg-white ">
       {/* Main Navbar */}
       <div className="px-6 md:px-20 py-4 flex border-b border-b-neutral-200 justify-between items-center">
         {/* Left Logo + Menu */}
@@ -163,17 +166,26 @@ const NavBar = () => {
       </div>
 
       {/* Category Bar */}
-      <div className="w-full overflow-x-auto border-b border-neutral-200 bg-white">
-        <div className="flex gap-6 px-6 md:px-20 py-3 text-sm font-semibold text-neutral-600 whitespace-nowrap">
-          {categories.map((cat) => (
-            <Link
-              key={cat.name}
-              to={cat.path}
-              className="hover:text-black transition"
-            >
-              {cat.name}
-            </Link>
-          ))}
+      <div className="w-full scrollbar-hide overflow-x-auto border-b border-neutral-200 bg-white">
+        <div className="flex gap-3 px-6 md:px-20  text-xs font-semibold text-neutral-500 whitespace-nowrap">
+          {categories.map((cat) => {
+            const isActive =
+              currentPath === cat.path || currentPath.startsWith(cat.path + "/browse");
+
+            return (
+              <Link
+                key={cat.name}
+                to={cat.path}
+                className={`transition py-2 px-3 ${
+                  isActive
+                    ? "text-black border-b-2 border-black"
+                    : "hover:text-black"
+                }`}
+              >
+                {cat.name}
+              </Link>
+            );
+          })}
         </div>
       </div>
 

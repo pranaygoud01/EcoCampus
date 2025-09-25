@@ -73,7 +73,7 @@ const Products = () => {
         <div className="mx-auto w-full px-4 py-6 sm:px-6 lg:px-20">
 
           {/* Campus Heading + Search Bar (Sticky) */}
-          <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sticky top-7 z-20 bg-white py-2">
+          <div className="mb-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-between sticky top-15 z-20 bg-white py-2">
             <h1 className="font-semibold text-lg text-neutral-900">
                {campus}
             </h1>
@@ -82,7 +82,7 @@ const Products = () => {
               <IoSearch />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={`Search products of ${campus}`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full sm:w-64 text-xs outline-0"
@@ -91,7 +91,7 @@ const Products = () => {
           </div>
 
           {/* Categories Bar (Sticky below search) */}
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6 sticky lg:top-22 top-30 z-10 bg-white">
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6 sticky lg:top-22 top-38 z-10 bg-white">
             {categories.map((cat) => (
               <button
                 key={cat.name}
