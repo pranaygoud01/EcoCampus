@@ -85,6 +85,7 @@ const NavBar = () => {
     onSuccess: onGoogleSuccess,
     onError: () => alert("Google login failed. Try again."),
     scope: "openid email profile",
+    ux_mode: "popup",
   });
 
   return (
