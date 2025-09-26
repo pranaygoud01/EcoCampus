@@ -27,3 +27,4 @@ Allow: /browse/product/*
 
 # Crawl delay (optional)
 Crawl-delay: 1
+

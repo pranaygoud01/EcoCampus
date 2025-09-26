@@ -1,5 +1,4 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 
 const SEOHead = ({
   title = "SwapnSave | Buy & Sell Used Campus Essentials Easily",
@@ -10,48 +9,82 @@ const SEOHead = ({
   type = "website",
   structuredData = null
 }) => {
-  return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content="SwapnSave Team" />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={url} />
+  useEffect(() => {
+    // Update document title
+    document.title = title;
 
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
-      <meta property="og:url" content={url} />
-      <meta property="og:site_name" content="SwapnSave" />
-      <meta property="og:locale" content="en_US" />
+    // Update or create meta tags
+    const updateMetaTag = (name, content, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let meta = document.querySelector(selector);
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (property) {
+          meta.setAttribute('property', name);
+        } else {
+          meta.setAttribute('name', name);
+        }
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
-      <meta name="twitter:site" content="@SwapnSave" />
-      <meta name="twitter:creator" content="@SwapnSave" />
+    // Update or create link tags
+    const updateLinkTag = (rel, href) => {
+      let link = document.querySelector(`link[rel="${rel}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+    };
 
-      {/* Additional SEO Meta Tags */}
-      <meta name="theme-color" content="#000000" />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="apple-mobile-web-app-title" content="SwapnSave" />
+    // Basic Meta Tags
+    updateMetaTag('description', description);
+    updateMetaTag('keywords', keywords);
+    updateMetaTag('author', 'SwapnSave Team');
+    updateMetaTag('robots', 'index, follow');
+    updateLinkTag('canonical', url);
 
-      {/* Structured Data */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-    </Helmet>
-  );
+    // Open Graph / Facebook
+    updateMetaTag('og:type', type, true);
+    updateMetaTag('og:title', title, true);
+    updateMetaTag('og:description', description, true);
+    updateMetaTag('og:image', image, true);
+    updateMetaTag('og:url', url, true);
+    updateMetaTag('og:site_name', 'SwapnSave', true);
+    updateMetaTag('og:locale', 'en_US', true);
+
+    // Twitter
+    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:title', title);
+    updateMetaTag('twitter:description', description);
+    updateMetaTag('twitter:image', image);
+    updateMetaTag('twitter:site', '@SwapnSave');
+    updateMetaTag('twitter:creator', '@SwapnSave');
+
+    // Additional SEO Meta Tags
+    updateMetaTag('theme-color', '#000000');
+    updateMetaTag('msapplication-TileColor', '#000000');
+    updateMetaTag('apple-mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
+    updateMetaTag('apple-mobile-web-app-title', 'SwapnSave');
+
+    // Structured Data
+    if (structuredData) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) {
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(structuredData);
+    }
+  }, [title, description, keywords, image, url, type, structuredData]);
+
+  return null; // This component doesn't render anything
 };
 
 export default SEOHead;

@@ -5,7 +5,6 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { Toaster } from "react-hot-toast";
-import { HelmetProvider } from "react-helmet-async";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -25,14 +24,12 @@ function RootComponent() {
   }, [pathname]);
 
   return (
-    <HelmetProvider>
-      <React.Fragment>
-        <Toaster position="top-center" reverseOrder={false} />
-        {!hideLayout && <NavBar />}
-        <Outlet />
-        {!hideLayout && <Footer />}
-      </React.Fragment>
-    </HelmetProvider>
+    <React.Fragment>
+      <Toaster position="top-center" reverseOrder={false} />
+      {!hideLayout && <NavBar />}
+      <Outlet />
+      {!hideLayout && <Footer />}
+    </React.Fragment>
   );
 }
 

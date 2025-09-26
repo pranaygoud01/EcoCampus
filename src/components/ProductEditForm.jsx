@@ -249,3 +249,4 @@ const ProductEditForm = ({ product, onUpdate, onClose }) => {
 };
 
 export default ProductEditForm;
+
