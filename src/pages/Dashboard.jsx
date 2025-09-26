@@ -4,12 +4,17 @@ import { LuCirclePlus } from "react-icons/lu";
 import { MdOutlineModeEdit, MdOutlineDelete } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import axios from "axios";
+import ProjectManagement from "../components/ProjectManagement";
+import ProductEditForm from "../components/ProductEditForm";
 
 const Dashboard = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState(null); // track product id to delete
   const [showConfirm, setShowConfirm] = useState(false); // track popup visibility
+  const [activeTab, setActiveTab] = useState("products"); // track active tab
+  const [editingProduct, setEditingProduct] = useState(null); // track product being edited
+  const [showEditForm, setShowEditForm] = useState(false); // track edit form visibility
 
   const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -62,6 +67,21 @@ const Dashboard = () => {
     }
   };
 
+  // Handle Edit
+  const handleEdit = (product) => {
+    setEditingProduct(product);
+    setShowEditForm(true);
+  };
+
+  // Handle Update
+  const handleUpdate = (updatedProduct) => {
+    setListings((prev) =>
+      prev.map((item) => (item._id === updatedProduct._id ? updatedProduct : item))
+    );
+    setShowEditForm(false);
+    setEditingProduct(null);
+  };
+
   return (
     <div className="bg-background-light font-display text-gray-800 h-fit min-h-[90vh]">
       
@@ -71,104 +91,146 @@ const Dashboard = () => {
           <h2 className="text-3xl flex flex-col max-lg:text-2xl font-bold text-gray-900">
             Seller Dashboard
             <span className="text-xs text-neutral-500 font-medium mt-1">
-              Hey 👋🏻, From here you can manage your products
+              Hey 👋🏻, From here you can manage your products and projects
             </span>
           </h2>
-          <Link
-            to="/sell"
-            className="flex items-center gap-2 text-sm text-white bg-black font-semibold px-4 py-2 rounded-lg transition-colors"
-          >
-            <LuCirclePlus />
-            <span>Create New Listing</span>
-          </Link>
-        </div>
-
-        {/* Listings Table */}
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                <tr>
-                  <th className="px-6 py-4 font-semibold">Item</th>
-                  <th className="px-6 py-4 font-semibold">Price</th>
-                  <th className="px-6 py-4 font-semibold text-center">Status</th>
-                  <th className="px-6 py-4 font-semibold text-center">Campus</th>
-                  <th className="px-6 py-4 font-semibold text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan="5" className="text-center py-6">
-                      Loading...
-                    </td>
-                  </tr>
-                ) : listings.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="text-center py-6">
-                      No listings found
-                    </td>
-                  </tr>
-                ) : (
-                  listings.map((item) => (
-                    <tr
-                      key={item._id}
-                      className="bg-white border-b border-b-neutral-200 hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-4">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-12 h-12 rounded-lg object-cover"
-                          />
-                          <div>
-                            <p className="font-semibold text-gray-900">
-                              {item.name}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              {new Date(item.createdAt).toLocaleDateString()}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 font-semibold text-gray-900">
-                        ₹{item.price}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          Available
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-center font-semibold text-gray-900">
-                        {item.campus?.name}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex justify-end items-center gap-2">
-                          <button className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-gray-500">
-                            <FaRegEye />
-                          </button>
-                          <button className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-gray-500">
-                            <MdOutlineModeEdit />
-                          </button>
-                          <button
-                            onClick={() => {
-                              setDeleteId(item._id);
-                              setShowConfirm(true);
-                            }}
-                            className="p-2 rounded-lg hover:bg-red-500 hover:text-white cursor-pointer transition-colors text-red-600"
-                          >
-                            <MdOutlineDelete />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+          <div className="flex gap-2">
+            <Link
+              to="/sell"
+              className="flex items-center gap-2 text-sm max-lg:text-xs text-white bg-black font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              <LuCirclePlus />
+              <span>Create New Listing</span>
+            </Link>
+            <Link
+              to="/sell-project"
+              className="flex items-center gap-2 text-sm max-lg:text-xs text-white bg-blue-600 font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              <LuCirclePlus />
+              <span>Create New Project</span>
+            </Link>
           </div>
         </div>
+
+        {/* Tabs */}
+        <div className="flex space-x-1 mb-6">
+          <button
+            onClick={() => setActiveTab("products")}
+            className={`px-4 py-2 rounded-lg max-lg:text-xs font-medium transition-colors ${
+              activeTab === "products"
+                ? "bg-black text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            Products
+          </button>
+          <button
+            onClick={() => setActiveTab("projects")}
+            className={`px-4 py-2 rounded-lg  max-lg:text-xs font-medium transition-colors ${
+              activeTab === "projects"
+                ? "bg-black text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
+          >
+            Projects
+          </button>
+        </div>
+
+        {/* Content based on active tab */}
+        {activeTab === "products" ? (
+          /* Products Table */
+          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+                  <tr>
+                    <th className="px-6 py-4 font-semibold">Item</th>
+                    <th className="px-6 py-4 font-semibold">Price</th>
+                    <th className="px-6 py-4 font-semibold text-center">Status</th>
+                    <th className="px-6 py-4 font-semibold text-center">Campus</th>
+                    <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loading ? (
+                    <tr>
+                      <td colSpan="5" className="text-center py-6">
+                        Loading...
+                      </td>
+                    </tr>
+                  ) : listings.length === 0 ? (
+                    <tr>
+                      <td colSpan="5" className="text-center py-6">
+                        No listings found
+                      </td>
+                    </tr>
+                  ) : (
+                    listings.map((item) => (
+                      <tr
+                        key={item._id}
+                        className="bg-white border-b border-b-neutral-200 hover:bg-gray-50 transition-colors"
+                      >
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-4">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-12 h-12 rounded-lg object-cover"
+                            />
+                            <div>
+                              <p className="font-semibold max-lg:text-xs text-gray-900">
+                                {item.name}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {new Date(item.createdAt).toLocaleDateString()}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 font-semibold text-gray-900">
+                          ₹{item.price}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Available
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-center font-semibold text-gray-900">
+                          {item.campus?.name}
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <div className="flex justify-end items-center gap-2">
+                            <button className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-gray-500">
+                              <FaRegEye />
+                            </button>
+                            <button
+                              onClick={() => handleEdit(item)}
+                              className="p-2 rounded-lg hover:bg-gray-200 transition-colors text-gray-500"
+                            >
+                              <MdOutlineModeEdit />
+                            </button>
+                            <button
+                              onClick={() => {
+                                setDeleteId(item._id);
+                                setShowConfirm(true);
+                              }}
+                              className="p-2 rounded-lg hover:bg-red-500 hover:text-white cursor-pointer transition-colors text-red-600"
+                            >
+                              <MdOutlineDelete />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          /* Projects Management */
+          <ProjectManagement />
+        )}
 
         {/* Confirm Delete Popup */}
         {showConfirm && (
@@ -197,6 +259,18 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Edit Product Form */}
+        {showEditForm && (
+          <ProductEditForm
+            product={editingProduct}
+            onUpdate={handleUpdate}
+            onClose={() => {
+              setShowEditForm(false);
+              setEditingProduct(null);
+            }}
+          />
         )}
       </main>
     </div>
