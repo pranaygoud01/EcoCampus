@@ -1,7 +1,4 @@
 import React from "react";
-import { MdOutlineRecycling, MdGroups2 } from "react-icons/md";
-import { VscVerifiedFilled } from "react-icons/vsc";
-import { GiReceiveMoney } from "react-icons/gi";
 import { SiTicktick } from "react-icons/si";
 import logo from "../assets/logo.png";
 const About = () => {
@@ -52,72 +49,79 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-background-light :bg-background- font-display text-gray-800 :text-gray-200">
+    <div className="bg-white:bg-background- text-gray-800 :text-gray-200">
       <main className="container mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="max-w-4xl mx-auto flex justify-center flex-col items-center">
-          <h2 className="text-3xl sm:text-4xl flex gap-2 items-center md:text-5xl font-extrabold text-gray-900 :text-white leading-tight">
-            <img src={logo} className="w-auto h-[50px]" />
-          </h2>
-          <p className="mt-4 sm:mt-6 text-xs sm:text-lg text-neutral-500 :text-gray-300">
-            A student-focused marketplace for second-hand books, gadgets, lab
-            coats, and instruments. We're here to help you save money, reduce
-            waste, and connect with your campus community.
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-3">
+            <img src={logo} className="w-auto h-[44px]" />
+            
+          </div>
+          <p className="mt-4 sm:mt-5 text-sm sm:text-base text-neutral-600 :text-gray-300">
+            Buy and sell second‑hand books, gadgets, lab coats, and instruments with
+            your campus community — save money, reduce waste, and keep great gear in use.
           </p>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <a href="/browse" className="font-semibold text-white bg-black hover:bg-black rounded-lg px-5 py-2 text-sm">
+              Browse Products
+            </a>
+            <a href="/sell" className="font-semibold text-black bg-white rounded-lg px-4 py-2 text-sm">
+              Start Selling
+            </a>
+          </div>
         </div>
 
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        {/* Content */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
           {/* Mission & Values */}
           <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl max-lg:text-xl font-bold text-black :text-white mb-3">
-                Our Mission
-              </h3>
-              <p className="text-gray-600 :text-gray-300 text-xs sm:text-base">
-                To create a sustainable and cost-effective solution for students
-                to acquire necessary academic materials. By providing a platform
-                for students to buy and sell used items, we aim to alleviate the
-                financial burden associated with higher education and encourage
-                a culture of reuse and resourcefulness on campus.
+            <section>
+              <h2 className="text-2xl max-lg:text-xl font-bold text-black :text-white mb-3">Our Mission</h2>
+              <p className="text-gray-600 :text-gray-300 text-sm sm:text-base leading-relaxed">
+                We are building a simple, trusted marketplace that makes student essentials
+                affordable and sustainable. By enabling students to resell quality items,
+                we help cut costs, reduce waste, and create a culture of reuse across campuses.
               </p>
-            </div>
+            </section>
 
-            <div>
-              <h3 className="text-2xl max-lg:text-xl font-bold text-black :text-white mb-3">
-                Our Values
-              </h3>
+            <section>
+              <h2 className="text-2xl max-lg:text-xl font-bold text-black :text-white mb-3">Our Values</h2>
               <ul className="space-y-2 text-gray-600 :text-gray-300 list-inside">
                 {values.map((value, idx) => (
                   <li key={idx} className="flex items-start">
-                    <span className="text-primary mr-2 mt-1 text-sm">
-                      {value.icon}
-                    </span>
-                    <div className="max-lg:text-xs">
+                    <span className="text-primary mr-2 mt-1 text-sm">{value.icon}</span>
+                    <div className="text-sm sm:text-base max-lg:text-xs">
                       <strong>{value.title}:</strong> {value.desc}
                     </div>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           </div>
 
           {/* Features */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {features.map((feature, idx) => (
               <div
                 key={idx}
                 className="bg-white :bg-background- p-6 rounded-xl border border-gray-200 :border-gray-800 shadow-sm hover:shadow-lg transition-shadow"
               >
-                <span className="text-black text-4xl mb-4 inline-block">
-                  {feature.icon}
-                </span>
-                <h4 className="font-bold text-lg max-lg:text-sm text-gray-900 :text-white">
-                  {feature.title}
-                </h4>
-                <p className="text-sm text-gray-500 max-lg:text-xs :text-gray-400 mt-1">
-                  {feature.desc}
-                </p>
+                <span className="text-black text-4xl mb-4 inline-block">{feature.icon}</span>
+                <h3 className="font-bold text-lg max-lg:text-sm text-gray-900 :text-white">{feature.title}</h3>
+                <p className="text-sm text-gray-500 max-lg:text-xs :text-gray-400 mt-1">{feature.desc}</p>
               </div>
             ))}
+          </section>
+        </div>
+
+        {/* Safety + Trust */}
+        <div className="mt-12 sm:mt-16">
+          <div className="bg-white :bg-white/5 border border-gray-200 :border-white/10 rounded-2xl p-6 sm:p-8 max-w-5xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-bold text-black :text-white">Safety & Trust</h2>
+            <p className="mt-2 text-sm sm:text-base text-gray-600 :text-gray-300">
+              Your privacy and security matter. We encourage on‑campus meetups in safe, public places
+              and provide tools that help you verify and manage your listings with confidence.
+            </p>
           </div>
         </div>
       </main>
