@@ -1,5 +1,6 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
+import SEOHead from '../components/SEOHead'
+import { seoData } from '../utils/seoData'
 import Hero from '../components/Hero'
 import Process from '../components/Process'
 import Colleges from '../components/Colleges'
@@ -9,6 +10,7 @@ import Categories from '../components/Categories'
 const App = () => {
   return (
     <div>
+      <SEOHead {...seoData.home} />
       <Hero/>
       <Categories/>
       <PopularProducts/>

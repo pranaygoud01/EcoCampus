@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://swapnsave.tech/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /
+Allow: /browse
+Allow: /sell
+Allow: /sell-project
+Allow: /about
+Allow: /contact
+Allow: /browse/books
+Allow: /browse/gadgets
+Allow: /browse/labcoats
+Allow: /browse/instruments
+Allow: /browse/others
+Allow: /projects
+Allow: /browse/products
+Allow: /browse/product/*
+
+# Crawl delay (optional)
+Crawl-delay: 1

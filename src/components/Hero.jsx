@@ -12,6 +12,8 @@ const Hero = () => {
         backgroundImage:
           "url('https://images.unsplash.com/photo-1619512673224-91cfb2688284?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
       }}
+      role="img"
+      aria-label="Students studying in a modern campus environment"
     >
       <div className="w-full h-full bg-black/60 flex flex-col gap-2 max-lg:text-center max-lg:px-5 justify-center items-center">
         <p className="text-black font-medium bg-white mb-3 rounded-full px-6 max-lg:px-5 text-xs max-lg:text-[9px] py-2 shadow-md">

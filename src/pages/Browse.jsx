@@ -2,6 +2,8 @@ import { useNavigate } from "@tanstack/react-router";
 import React, { useState, useEffect } from "react";
 import { IoSearch, IoArrowForwardSharp } from "react-icons/io5";
 import axios from "axios";
+import SEOHead from "../components/SEOHead";
+import { seoData } from "../utils/seoData";
 
 const Browse = () => {
   const navigate = useNavigate();
@@ -68,6 +70,7 @@ const Browse = () => {
 
   return (
     <div className="h-[80vh] max-lg:p-5 flex flex-col bg-background font-display text-foreground">
+      <SEOHead {...seoData.browse} />
       <main className="flex-grow flex items-center justify-center sm:p-6 lg:p-8">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">

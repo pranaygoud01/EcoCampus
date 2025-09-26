@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import SEOHead from "../components/SEOHead";
+import { seoData } from "../utils/seoData";
 
 const Sell = () => {
   const [formData, setFormData] = useState({
@@ -109,6 +111,7 @@ const Sell = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background-light :bg-background- font-display text-gray-800 :text-gray-200 relative">
+      <SEOHead {...seoData.sell} />
       {/* Full-page loading overlay */}
       {submitting && (
         <div className="absolute inset-0 bg-black/10 bg-opacity-50 flex justify-center items-center z-50">

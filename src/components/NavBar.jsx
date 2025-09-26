@@ -97,7 +97,7 @@ const NavBar = () => {
             to="/"
             className="font-bold text-black max-lg:text-lg text-xl flex items-center gap-1"
           >
-            <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto" />
+            <img src={logo} className="h-[40px] max-lg:h-[35px] w-auto" alt="SwapnSave Logo - Campus Marketplace" />
           </Link>
 
           {/* Desktop Menu */}
@@ -183,15 +183,16 @@ const NavBar = () => {
                   Hey, {userName}
                 </span>
                 <span className="flex items-center cursor-pointer gap-1">
-                  <img
-                    src={
-                      userAvatar ||
-                      "https://ui-avatars.com/api/?name=" +
-                        encodeURIComponent(userName)
-                    }
-                    referrerPolicy="no-referrer"
-                    className="w-8 h-8 rounded-full"
-                  />
+                   <img
+                     src={
+                       userAvatar ||
+                       "https://ui-avatars.com/api/?name=" +
+                         encodeURIComponent(userName)
+                     }
+                     referrerPolicy="no-referrer"
+                     className="w-8 h-8 rounded-full"
+                     alt={`${userName} profile picture`}
+                   />
                   <IoIosArrowDown className="text-xs" />
                 </span>
               </button>
@@ -221,15 +222,16 @@ const NavBar = () => {
         <div className="md:hidden flex items-center gap-2">
           {isAuthenticated ? (
             <div>
-              <img
-                src={
-                  userAvatar ||
-                  "https://ui-avatars.com/api/?name=" +
-                    encodeURIComponent(userName)
-                }
-                referrerPolicy="no-referrer"
-                className="w-6 h-6 rounded-full"
-              />
+               <img
+                 src={
+                   userAvatar ||
+                   "https://ui-avatars.com/api/?name=" +
+                     encodeURIComponent(userName)
+                 }
+                 referrerPolicy="no-referrer"
+                 className="w-6 h-6 rounded-full"
+                 alt={`${userName} profile picture`}
+               />
             </div>
           ) : (
             <button
@@ -341,14 +343,15 @@ const NavBar = () => {
           ) : (
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
-                <img
-                  src={
-                    userAvatar ||
-                    "https://ui-avatars.com/api/?name=" +
-                      encodeURIComponent(userName)
-                  }
-                  className="w-8 h-8 rounded-full"
-                />
+                 <img
+                   src={
+                     userAvatar ||
+                     "https://ui-avatars.com/api/?name=" +
+                       encodeURIComponent(userName)
+                   }
+                   className="w-8 h-8 rounded-full"
+                   alt={`${userName} profile picture`}
+                 />
                 <span className="font-semibold text-sm text-neutral-700">
                   Hi, {userName}
                 </span>

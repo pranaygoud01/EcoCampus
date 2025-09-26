@@ -4,6 +4,8 @@ import { LuCirclePlus } from "react-icons/lu";
 import { MdOutlineModeEdit, MdOutlineDelete } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import axios from "axios";
+import SEOHead from "../components/SEOHead";
+import { seoData } from "../utils/seoData";
 import ProjectManagement from "../components/ProjectManagement";
 import ProductEditForm from "../components/ProductEditForm";
 
@@ -84,7 +86,7 @@ const Dashboard = () => {
 
   return (
     <div className="bg-background-light font-display text-gray-800 h-fit min-h-[90vh]">
-      
+      <SEOHead {...seoData.dashboard} />
       <main className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
