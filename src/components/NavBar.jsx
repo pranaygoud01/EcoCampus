@@ -309,7 +309,7 @@ const NavBar = () => {
         <div className="flex gap-3 px-6 md:px-20 text-xs font-semibold text-neutral-500 whitespace-nowrap">
           {categories.map((cat) => {
             const isActive =
-              currentPath === cat.path || currentPath.startsWith(cat.path);
+              currentPath === cat.path ;
 
             return (
               <Link
