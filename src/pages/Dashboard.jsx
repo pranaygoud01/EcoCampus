@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { LuCirclePlus } from "react-icons/lu";
 import { MdOutlineModeEdit, MdOutlineDelete } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
@@ -22,6 +23,13 @@ const Dashboard = () => {
 
   // Fetch Listings
   useEffect(() => {
+    // Welcome toast on mount
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const name = user?.name || "there";
+      toast.success(`Welcome back, ${name}!`, { id: "dashboard-welcome" });
+    } catch {}
+
     const fetchListings = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -48,7 +56,7 @@ const Dashboard = () => {
       const token = localStorage.getItem("token") // assuming token is saved in user object
 
       if (!token) {
-        alert("Not authorized. Please login again.");
+        toast.error("Not authorized. Please login again.");
         return;
       }
 
@@ -63,9 +71,10 @@ const Dashboard = () => {
 
       setShowConfirm(false);
       setDeleteId(null);
+      toast.success("Product deleted");
     } catch (err) {
       console.error("Error deleting product:", err);
-      alert("Failed to delete product. Try again.");
+      toast.error("Failed to delete product. Try again.");
     }
   };
 
@@ -82,6 +91,7 @@ const Dashboard = () => {
     );
     setShowEditForm(false);
     setEditingProduct(null);
+    toast.success("Product updated");
   };
 
   return (

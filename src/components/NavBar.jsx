@@ -202,7 +202,16 @@ const NavBar = () => {
                   <Link
                     to="/dashboard"
                     className="block px-4 py-2 text-xs text-neutral-700 hover:bg-neutral-100 rounded"
-                    onClick={() => setDropdownOpen(false)}
+                    onClick={(e) => {
+                      const token = localStorage.getItem("token");
+                      if (!token) {
+                        e.preventDefault();
+                        alert("Please sign in to open");
+                        setDropdownOpen(false);
+                        return;
+                      }
+                      setDropdownOpen(false);
+                    }}
                   >
                     Dashboard
                   </Link>
@@ -267,6 +276,9 @@ const NavBar = () => {
               </svg>
               <span>Sign in</span>
             </button>
+          )}
+          {isAuthenticated && (
+            <span className="text-xs font-semibold text-neutral-700">Hey, {userName}</span>
           )}
           <button onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <IoClose size={25} /> : <IoMenuOutline size={25} />}

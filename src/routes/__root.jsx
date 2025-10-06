@@ -7,6 +7,7 @@ import {
 import { Toaster } from "react-hot-toast";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import MobileBottomNav from "../components/MobileBottomNav";
 
 // Root route with a notFoundComponent
 export const Route = createRootRoute({
@@ -27,7 +28,10 @@ function RootComponent() {
     <React.Fragment>
       <Toaster position="top-center" reverseOrder={false} />
       {!hideLayout && <NavBar />}
-      <Outlet />
+      <div className="pb-16 md:pb-0">
+        <Outlet />
+      </div>
+      {!hideLayout && <MobileBottomNav />}
       {!hideLayout && <Footer />}
     </React.Fragment>
   );
