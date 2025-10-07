@@ -66,8 +66,8 @@ const SEOHead = ({
     updateMetaTag('twitter:creator', '@SwapnSave');
 
     // Additional SEO Meta Tags
-    updateMetaTag('theme-color', '#000000');
-    updateMetaTag('msapplication-TileColor', '#000000');
+    updateMetaTag('theme-color', '#ffffff');
+    updateMetaTag('msapplication-TileColor', '#ffffff');
     updateMetaTag('apple-mobile-web-app-capable', 'yes');
     updateMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');
     updateMetaTag('apple-mobile-web-app-title', 'SwapnSave');
