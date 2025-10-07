@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SellProjectRouteImport } from './routes/sell-project'
 import { Route as SellRouteImport } from './routes/sell'
+import { Route as NotesRouteImport } from './routes/notes'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -34,6 +35,11 @@ const SellProjectRoute = SellProjectRouteImport.update({
 const SellRoute = SellRouteImport.update({
   id: '/sell',
   path: '/sell',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/notes': typeof NotesRoute
   '/sell': typeof SellRoute
   '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/notes': typeof NotesRoute
   '/sell': typeof SellRoute
   '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
+  '/notes': typeof NotesRoute
   '/sell': typeof SellRoute
   '/sell-project': typeof SellProjectRoute
   '/browse/books': typeof BrowseBooksRoute
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
+    | '/notes'
     | '/sell'
     | '/sell-project'
     | '/browse/books'
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
+    | '/notes'
     | '/sell'
     | '/sell-project'
     | '/browse/books'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/dashboard'
+    | '/notes'
     | '/sell'
     | '/sell-project'
     | '/browse/books'
@@ -224,6 +236,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
+  NotesRoute: typeof NotesRoute
   SellRoute: typeof SellRoute
   SellProjectRoute: typeof SellProjectRoute
   BrowseBooksRoute: typeof BrowseBooksRoute
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/sell'
       fullPath: '/sell'
       preLoaderRoute: typeof SellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -360,6 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
+  NotesRoute: NotesRoute,
   SellRoute: SellRoute,
   SellProjectRoute: SellProjectRoute,
   BrowseBooksRoute: BrowseBooksRoute,
