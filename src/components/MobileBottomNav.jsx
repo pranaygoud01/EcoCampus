@@ -2,10 +2,10 @@ import React from "react";
 import { Link, useRouter } from "@tanstack/react-router";
 
 import { GrHomeRounded } from "react-icons/gr";
-import { CiSearch } from "react-icons/ci";
+import { IoSearch } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { LiaMicrosoft } from "react-icons/lia";
-import { IoPersonOutline } from "react-icons/io5";
+import { SiNintendogamecube } from "react-icons/si";
+import { PiBooks } from "react-icons/pi";
 
 const MobileBottomNav = () => {
   const router = useRouter();
@@ -56,7 +56,7 @@ const MobileBottomNav = () => {
                 : "bg-white/40 border border-white/50"
             }`}
           >
-            <CiSearch size={20} />
+            <IoSearch size={20} />
           </span>
           <span className="mt-0.5">Browse</span>
         </Link>
@@ -93,37 +93,29 @@ const MobileBottomNav = () => {
                 : "bg-white/40 border border-white/50"
             }`}
           >
-            <LiaMicrosoft size={20} />
+            <SiNintendogamecube size={20} />
           </span>
           <span className="mt-0.5">Projects</span>
         </Link>
 
         <Link
-          to="/dashboard"
+          to="/notes"
           className={`flex flex-col items-center justify-center gap-0.5 text-[10px] font-semibold transition-colors ${
-            isActive("/dashboard") ? "text-black" : "text-neutral-600"
+            isActive("/notes") ? "text-black" : "text-neutral-600"
           }`}
-          aria-label="Profile"
-          onClick={(e) => {
-            try {
-              const token = localStorage.getItem("token");
-              if (!token) {
-                e.preventDefault();
-                alert("Please sign in to open");
-              }
-            } catch {}
-          }}
+          aria-label="Notes"
+         
         >
           <span
             className={`flex items-center justify-center w-9 h-9 rounded-xl ${
-              isActive("/dashboard")
+              isActive("/notes")
                 ? "bg-white/80 shadow-sm border border-white/70"
                 : "bg-white/40 border border-white/50"
             }`}
           >
-            <IoPersonOutline size={20} />
+            <PiBooks size={20} />
           </span>
-          <span className="mt-0.5">Profile</span>
+          <span className="mt-0.5">Notes</span>
         </Link>
       </div>
     </nav>

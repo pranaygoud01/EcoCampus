@@ -100,7 +100,7 @@ function NotesPage() {
                   <button
                     key={i}
                     onClick={() => setSem(i + 1)}
-                    className="py-3 px-2 bg-white border border-neutral-200 rounded-lg hover:bg-indigo-50 text-center"
+                    className="py-3 px-2 max-lg:text-sm max-lg:font-semibold bg-white border border-neutral-200 rounded-lg hover:bg-indigo-50 text-center"
                   >
                     Semester {i + 1}
                   </button>
