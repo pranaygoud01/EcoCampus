@@ -20,7 +20,7 @@ const MobileBottomNav = () => {
       aria-label="Primary mobile"
     >
       <div
-        className="h-18 flex items-center justify-around px-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:backdrop-blur-md border-t border-white/60 rounded-t-2xl shadow-[0_-10px_30px_-10px_rgba(0,0,0,0.1)] bg-gradient-to-t from-white/70 to-white/20"
+        className="h-20 flex items-center justify-around px-2 bg-white/70 backdrop-blur-md supports-[backdrop-filter]:backdrop-blur-md border-t border-white/60 rounded-t-2xl shadow-[0_-10px_30px_-10px_rgba(0,0,0,0.1)] bg-gradient-to-t from-white/70 to-white/20"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <Link
