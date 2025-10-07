@@ -91,23 +91,19 @@ const Products = () => {
           </div>
 
           {/* Categories Bar (Sticky below search) */}
-          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6 sticky lg:top-22 top-38 z-10 bg-white">
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mb-6 sticky lg:top-22 top-38 pt-2 z-10 bg-white">
             {categories.map((cat) => (
               <button
                 key={cat.name}
                 onClick={() => setSelectedCategory(cat.name)}
-                className={`flex flex-col items-center min-w-20 cursor-pointer flex-shrink-0 px-3 py-2 rounded-lg transition ${
+                className={`flex flex-col items-center min-w-20 border border-neutral-200 cursor-pointer flex-shrink-0 px-3 py-2 rounded-lg transition ${
                   selectedCategory === cat.name
-                    ? "bg-neutral-100 text-black"
+                    ? "bg-black text-white"
                     : "bg-white text-neutral-500"
                 }`}
               >
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="h-10 w-10 object-contain"
-                />
-                <span className="text-sm font-medium mt-1">{cat.name}</span>
+                
+                <span className="text-sm max-lg:text-xs font-medium ">{cat.name}</span>
               </button>
             ))}
           </div>

@@ -69,20 +69,19 @@ const Browse = () => {
   };
 
   return (
-    <div className="h-[80vh] max-lg:p-5 flex flex-col bg-background font-display text-foreground">
+    <div className="min-h-[80vh] max-lg:p-5 flex flex-col bg-background font-display text-foreground">
       <SEOHead {...seoData.browse} />
-      <main className="flex-grow flex items-center justify-center sm:p-6 lg:p-8">
-        <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            Find Your Campus
+      <main className="flex-grow flex items-start justify-center sm:p-6 lg:p-8  pt-2">
+        <div className="w-full px-20 max-lg:p-0 mx-auto flex flex-col items-start text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+            Find Campuses
           </h2>
-          <p className="mt-4 max-w-xl text-sm text-neutral-500">
-            Find deals on textbooks, gadgets, and more from students at your
-            school.
+          <p className="mt-2 text-xs text-neutral-500">
+            Find deals on textbooks, gadgets, and more from students at your school.
           </p>
 
           {/* Search Input */}
-          <div className="w-full max-w-md mt-8 relative">
+          <div className="w-full mt-6 relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
               <IoSearch />
             </span>
@@ -116,12 +115,12 @@ const Browse = () => {
           </div>
 
           {/* Popular Campuses */}
-          <div className="w-full max-w-lg mt-8">
+          <div className="w-full mt-8">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
               Popular Campuses
             </h3>
 
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {loading
                 ? // 🔹 Skeletons while loading
                   Array.from({ length: 6 }).map((_, i) => (
@@ -134,7 +133,7 @@ const Browse = () => {
                   popularCampuses.map((campus) => (
                     <button
                       key={campus._id}
-                      className={`campus-button flex items-center gap-2 justify-start p-2 border border-neutral-200 rounded-lg bg-background ${
+                      className={`campus-button flex items-center gap-2 justify-start p-2 border border-neutral-300 rounded-lg bg-background ${
                         selectedCampus?._id === campus._id ? "selected" : ""
                       }`}
                       onClick={() => handleSelectCampus(campus)}
@@ -174,12 +173,12 @@ const Browse = () => {
       <style>
         {`
           .campus-button.selected {
-            background-color: hsl(var(--primary));
-            color: hsl(var(--primary-foreground));
-            border-color: hsl(var(--primary));
+            background-color: #000000;
+            color: #ffffff;
+            border-color: #000000;
           }
           .campus-button.selected span {
-            color: hsl(var(--primary-foreground));
+            color: #ffffff;
           }
         `}
       </style>
